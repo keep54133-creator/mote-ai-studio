@@ -6,100 +6,307 @@
 <title>Mote AI Studio</title>
 
 <style>
-
+*{box-sizing:border-box}
 body{
-background:#0f0f0f;
-color:white;
-font-family:sans-serif;
-margin:0;
-padding:0;
-text-align:center;
+  margin:0;
+  font-family:sans-serif;
+  background:#080808;
+  color:white;
 }
-
+section{padding:45px 18px}
 .hero{
-padding:80px 20px;
+  text-align:center;
+  padding-top:70px;
+  background:radial-gradient(circle at top,#2b220c,#080808 55%);
 }
-
+.badge{
+  display:inline-block;
+  color:#d4af37;
+  border:1px solid #d4af37;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px;
+}
 h1{
-font-size:38px;
-line-height:1.4;
+  font-size:34px;
+  line-height:1.35;
+  margin:22px 0 12px;
 }
-
-.gold{
-color:#d4af37;
-}
-
-p{
-color:#d0d0d0;
-line-height:1.8;
-}
-
+.gold{color:#d4af37}
+p{color:#cfcfcf;line-height:1.8}
 .btn{
-display:inline-block;
-margin-top:25px;
-padding:15px 30px;
-background:#d4af37;
-color:black;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
+  display:inline-block;
+  background:#d4af37;
+  color:#000;
+  padding:15px 24px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:bold;
+  margin-top:16px;
 }
-
-.cards{
-padding:20px;
-display:grid;
-gap:20px;
+.grid{
+  display:grid;
+  gap:18px;
 }
-
 .card{
-background:#1a1a1a;
-padding:25px;
-border-radius:20px;
+  background:#151515;
+  border:1px solid #2b2b2b;
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
-
+.card h2{color:#d4af37;margin-top:0}
+textarea,input,select{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #333;
+  background:#0b0b0b;
+  color:white;
+  margin-top:10px;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:14px;
+  background:#d4af37;
+  color:#000;
+  font-weight:bold;
+  margin-top:14px;
+  font-size:15px;
+}
+.result{
+  margin-top:15px;
+  padding:15px;
+  background:#0d0d0d;
+  border-left:4px solid #d4af37;
+  border-radius:12px;
+  color:#eee;
+  line-height:1.8;
+  white-space:pre-line;
+}
+.small{font-size:13px;color:#aaa}
+.price{
+  font-size:28px;
+  color:#d4af37;
+  font-weight:bold;
+}
+footer{
+  text-align:center;
+  padding:35px 15px;
+  color:#777;
+}
 </style>
 </head>
 
 <body>
 
 <section class="hero">
-
-<h1>
-マチアプで損してる男へ。<br>
-<span class="gold">
-AIで“会える設計”へ。
-</span>
-</h1>
-
-<p>
-写真・プロフィール・メッセージを改善して、
-“会える男”に変える。
-</p>
-
-<a class="btn" href="#">
-無料相談する
-</a>
-
+  <span class="badge">AI × マチアプ改善</span>
+  <h1>
+    マチアプで損してる男へ。<br>
+    <span class="gold">写真・プロフィール・メッセを設計する。</span>
+  </h1>
+  <p>
+    “なんとなく頑張る恋愛”を卒業。<br>
+    AIで非モテ感を消して、会える確率を上げる。
+  </p>
+  <a class="btn" href="#tools">無料AI診断を使う</a>
 </section>
 
-<section class="cards">
+<section>
+  <div class="grid">
+    <div class="card">
+      <h2>このサイトでできること</h2>
+      <p>✔ プロフィール添削<br>✔ 返信メッセ生成<br>✔ 彼氏感写真アイデア<br>✔ マチアプ改善診断<br>✔ LINE相談への導線</p>
+    </div>
 
-<div class="card">
-<h2>プロフィール添削</h2>
-<p>女性目線で違和感を分析。</p>
-</div>
-
-<div class="card">
-<h2>メッセ生成</h2>
-<p>返信率が上がる会話を生成。</p>
-</div>
-
-<div class="card">
-<h2>彼氏感メーカー</h2>
-<p>会いたくなる雰囲気を設計。</p>
-</div>
-
+    <div class="card">
+      <h2>導線</h2>
+      <p>X投稿 → 無料AI診断 → LINE相談 → AI写真販売 / 講習 / コンサル</p>
+    </div>
+  </div>
 </section>
+
+<section id="tools">
+  <h2 class="gold">無料AIツール</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>プロフィール添削</h2>
+      <p class="small">今のプロフィール文を入れてください。</p>
+      <textarea id="profile" rows="5" placeholder="例：休日はカフェ巡りが好きです。よろしくお願いします。"></textarea>
+      <button onclick="reviewProfile()">添削する</button>
+      <div id="profileResult" class="result"></div>
+    </div>
+
+    <div class="card">
+      <h2>メッセ生成</h2>
+      <p class="small">女性との会話や相手のプロフィールを入れてください。</p>
+      <textarea id="message" rows="5" placeholder="例：相手が『カフェ好きです』と書いている"></textarea>
+      <button onclick="makeMessage()">返信を作る</button>
+      <div id="messageResult" class="result"></div>
+    </div>
+
+    <div class="card">
+      <h2>彼氏感メーカー</h2>
+      <p class="small">作りたい写真の雰囲気を選んでください。</p>
+      <select id="photoStyle">
+        <option>夜カフェ</option>
+        <option>街中デート</option>
+        <option>自然光カフェ</option>
+        <option>インスタ風ミラー自撮り</option>
+        <option>映画っぽい夜道</option>
+      </select>
+      <button onclick="makePhotoIdea()">写真案を作る</button>
+      <div id="photoResult" class="result"></div>
+    </div>
+
+    <div class="card">
+      <h2>マチアプ改善診断</h2>
+      <p class="small">今の悩みを選んでください。</p>
+      <select id="worry">
+        <option>マッチしない</option>
+        <option>返信が来ない</option>
+        <option>会うまで進まない</option>
+        <option>写真が弱い</option>
+        <option>何を書けばいいかわからない</option>
+      </select>
+      <button onclick="diagnose()">診断する</button>
+      <div id="diagnoseResult" class="result"></div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2 class="gold">販売メニュー</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h2>AI写真生成</h2>
+      <div class="price">1枚 500円〜</div>
+      <p>マチアプで使いやすい“自然な彼氏感写真”を設計。</p>
+    </div>
+
+    <div class="card">
+      <h2>プロフィール添削</h2>
+      <div class="price">3,000円〜</div>
+      <p>非モテ感・違和感・自慢感を消して、会いたくなる文章へ。</p>
+    </div>
+
+    <div class="card">
+      <h2>恋愛コンサル</h2>
+      <div class="price">個別相談</div>
+      <p>マチアプ・メッセ・写真・会話までまとめて改善。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="card" style="text-align:center;">
+    <h2>無料相談はこちら</h2>
+    <p>診断結果をスクショしてLINEで送ってください。</p>
+    <a class="btn" href="https://line.me/" target="_blank">LINEで相談する</a>
+    <p class="small">※あとで自分のLINEリンクに変更してください。</p>
+  </div>
+</section>
+
+<footer>
+  Mote AI Studio<br>
+  モテはセンスじゃない。設計できる。
+</footer>
+
+<script>
+function reviewProfile(){
+  const text = document.getElementById("profile").value;
+  const result = document.getElementById("profileResult");
+
+  if(!text){
+    result.innerText = "プロフィール文を入力してください。";
+    return;
+  }
+
+  result.innerText =
+`診断結果：
+今の文章は悪くないですが、“会いたくなる理由”が弱いです。
+
+改善ポイント：
+・安心感を入れる
+・休日の過ごし方を具体化する
+・自慢より人柄を出す
+・女性が返信しやすい一文を入れる
+
+改善例：
+休日はカフェでゆっくりしたり、散歩しながら美味しい店を探すのが好きです。
+落ち着いた雰囲気で話せる人と、自然体で仲良くなれたら嬉しいです。`;
+}
+
+function makeMessage(){
+  const text = document.getElementById("message").value;
+  const result = document.getElementById("messageResult");
+
+  if(!text){
+    result.innerText = "会話内容を入力してください。";
+    return;
+  }
+
+  result.innerText =
+`おすすめ返信：
+「カフェ好きなんですね。雰囲気いいお店探すの好きなので、そういう話めっちゃ合いそうです。」
+
+別パターン：
+「自分もカフェ結構好きです。落ち着いて話せる場所の方が好きなので、かなり共感しました。」
+
+ポイント：
+質問攻めより、“共感＋軽い自己開示”が強いです。`;
+}
+
+function makePhotoIdea(){
+  const style = document.getElementById("photoStyle").value;
+  const result = document.getElementById("photoResult");
+
+  result.innerText =
+`おすすめ写真設計：${style}
+
+構図：
+友達に自然に撮られたような距離感。
+
+表情：
+カメラ目線すぎず、少し笑う。
+
+服装：
+黒・白・グレー中心。清潔感重視。
+
+プロンプト例：
+スマホで撮影したような自然な日本人男性の写真、${style}、彼氏感、清潔感、自然な笑顔、少しブレ、フィルムグレイン、リアル、過度な加工なし。`;
+}
+
+function diagnose(){
+  const worry = document.getElementById("worry").value;
+  const result = document.getElementById("diagnoseResult");
+
+  result.innerText =
+`悩み：${worry}
+
+原因候補：
+・写真で安心感が伝わっていない
+・プロフィールが無難すぎる
+・メッセージが質問ばかり
+・会う理由を作れていない
+
+まず直す順番：
+1. 写真
+2. プロフィール
+3. 初回メッセ
+4. アポ打診
+
+最短で変えるなら、写真とプロフィールから直すのが一番早いです。`;
+}
+</script>
 
 </body>
 </html>
