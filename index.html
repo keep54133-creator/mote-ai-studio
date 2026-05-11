@@ -4,179 +4,575 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mote AI Studio</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:sans-serif;background:#070707;color:white}
-section{padding:46px 18px}
-.hero{text-align:center;padding-top:75px;background:radial-gradient(circle at top,#3a2a0d,#070707 58%)}
-.badge{display:inline-block;color:#d4af37;border:1px solid #d4af37;padding:8px 14px;border-radius:999px;font-size:13px}
-h1{font-size:34px;line-height:1.35;margin:22px 0 12px}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  background:#050505;
+  color:#fff;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(212,175,55,.18),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(120,80,255,.18),transparent 30%),
+    radial-gradient(circle at 50% 90%,rgba(255,180,80,.10),transparent 35%);
+  pointer-events:none;
+  z-index:-1;
+}
+section{padding:54px 18px}
+.wrap{max-width:980px;margin:auto;width:100%}
+.nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:12px 16px;
+}
+.nav-inner{
+  max-width:980px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{font-weight:900;color:#d4af37}
+.nav a{
+  color:#ddd;
+  text-decoration:none;
+  font-size:13px;
+  margin-left:12px;
+}
+.hero{
+  min-height:92vh;
+  display:flex;
+  align-items:center;
+  text-align:center;
+  padding-top:70px;
+}
+.badge{
+  display:inline-block;
+  padding:9px 15px;
+  border:1px solid rgba(212,175,55,.7);
+  color:#d4af37;
+  border-radius:999px;
+  font-size:13px;
+  background:rgba(212,175,55,.08);
+  backdrop-filter:blur(10px);
+}
+h1{
+  font-size:38px;
+  line-height:1.25;
+  margin:24px 0 14px;
+  letter-spacing:-.03em;
+}
 h2{line-height:1.4}
-.gold,.card h2{color:#d4af37}
-p{color:#cfcfcf;line-height:1.8}
+.gold{color:#d4af37}
+p{color:#d8d8d8;line-height:1.85}
 .grid{display:grid;gap:18px}
-.card{background:#151515;border:1px solid #2b2b2b;border-radius:22px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.btn,button{display:inline-block;width:100%;background:#d4af37;color:#000;padding:15px 22px;border-radius:14px;text-decoration:none;font-weight:bold;border:none;margin-top:14px;font-size:15px}
-textarea,input,select{width:100%;padding:14px;border-radius:14px;border:1px solid #333;background:#0b0b0b;color:white;margin-top:10px;font-size:15px}
-.result{margin-top:15px;padding:15px;background:#0d0d0d;border-left:4px solid #d4af37;border-radius:12px;color:#eee;line-height:1.8;white-space:pre-line}
+.card{
+  background:rgba(20,20,20,.78);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:26px;
+  padding:24px;
+  box-shadow:0 18px 50px rgba(0,0,0,.45);
+  backdrop-filter:blur(18px);
+}
+.card h2{color:#d4af37;margin-top:0}
+.btn,button{
+  display:inline-block;
+  width:100%;
+  background:linear-gradient(135deg,#f5d76e,#b8860b);
+  color:#050505;
+  padding:16px 22px;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:800;
+  border:none;
+  margin-top:14px;
+  font-size:15px;
+  box-shadow:0 12px 25px rgba(212,175,55,.22);
+}
+.btn.sub{
+  background:rgba(255,255,255,.08);
+  color:white;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:none;
+}
+textarea,input,select{
+  width:100%;
+  padding:15px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.45);
+  color:white;
+  margin-top:10px;
+  font-size:15px;
+  outline:none;
+}
+.result{
+  margin-top:15px;
+  padding:16px;
+  background:rgba(0,0,0,.38);
+  border-left:4px solid #d4af37;
+  border-radius:14px;
+  color:#eee;
+  line-height:1.8;
+  white-space:pre-line;
+}
 .small{font-size:13px;color:#aaa}
-.price{font-size:28px;color:#d4af37;font-weight:bold}
-.score{font-size:42px;color:#d4af37;font-weight:bold;text-align:center}
-.photo-preview{margin-top:15px;min-height:180px;border-radius:18px;border:1px solid #333;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;line-height:1.7;font-weight:bold}
-.night{background:linear-gradient(135deg,#14100b,#3a250d,#0b0b0b)}
+.price{font-size:30px;color:#d4af37;font-weight:900}
+.score{font-size:46px;color:#d4af37;font-weight:900;text-align:center}
+.hero-img{
+  margin-top:28px;
+  border-radius:30px;
+  min-height:250px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:
+    linear-gradient(135deg,rgba(212,175,55,.22),rgba(80,60,30,.08)),
+    radial-gradient(circle at top,rgba(255,255,255,.12),transparent 50%);
+  border:1px solid rgba(212,175,55,.25);
+  box-shadow:inset 0 0 60px rgba(255,255,255,.03),0 30px 80px rgba(0,0,0,.55);
+}
+.phone{
+  width:230px;
+  height:420px;
+  border-radius:36px;
+  background:#0b0b0b;
+  border:8px solid #1e1e1e;
+  padding:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+.screen-card{
+  background:linear-gradient(135deg,#161616,#2b210d);
+  border-radius:24px;
+  height:100%;
+  padding:18px;
+  text-align:left;
+}
+.fake-photo{
+  height:190px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#2b1b0f,#0d1a2b,#050505);
+  display:flex;
+  align-items:end;
+  padding:15px;
+  color:#fff;
+}
+.photo-preview{
+  margin-top:15px;
+  min-height:240px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.13);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:22px;
+  line-height:1.7;
+  font-weight:bold;
+  overflow:hidden;
+  position:relative;
+}
+.photo-preview::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));
+}
+.photo-preview div{position:relative;z-index:2}
+.night{background:linear-gradient(135deg,#160f08,#4b2c0d,#050505)}
 .street{background:linear-gradient(135deg,#090909,#10233a,#3a102b)}
-.cafe{background:linear-gradient(135deg,#2c2114,#6b4b2a,#111)}
-.mirror{background:linear-gradient(135deg,#111,#2d2d2d,#080808)}
+.cafe{background:linear-gradient(135deg,#2c2114,#7a542b,#111)}
+.mirror{background:linear-gradient(135deg,#111,#3a3a3a,#080808)}
 .movie{background:linear-gradient(135deg,#020202,#182848,#2b1055)}
-footer{text-align:center;padding:35px 15px;color:#777}
+.loading{
+  display:none;
+  margin-top:15px;
+  padding:16px;
+  border-radius:16px;
+  background:rgba(212,175,55,.09);
+  color:#d4af37;
+  text-align:center;
+}
+.loading.active{display:block}
+.loader{
+  width:34px;
+  height:34px;
+  border:3px solid rgba(212,175,55,.25);
+  border-top-color:#d4af37;
+  border-radius:50%;
+  margin:0 auto 10px;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pill{
+  display:inline-block;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:12px;
+  color:#ddd;
+  margin:4px;
+}
+footer{text-align:center;padding:38px 15px;color:#777}
+@media(min-width:760px){
+  h1{font-size:58px}
+  .grid.two{grid-template-columns:1fr 1fr}
+  .grid.three{grid-template-columns:repeat(3,1fr)}
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:28px;
+    align-items:center;
+    text-align:left;
+  }
+  .btn-row{display:flex;gap:12px}
+}
 </style>
 </head>
 
 <body>
 
+<div class="nav">
+  <div class="nav-inner">
+    <div class="logo">Mote AI Studio</div>
+    <div>
+      <a href="#tools">診断</a>
+      <a href="#photo">写真</a>
+      <a href="#price">料金</a>
+      <a href="#line">LINE</a>
+    </div>
+  </div>
+</div>
+
 <section class="hero">
-<span class="badge">AI × マチアプ改善</span>
-<h1>マチアプで損してる男へ。<br><span class="gold">写真・プロフィール・メッセを設計する。</span></h1>
-<p>“なんとなく頑張る恋愛”を卒業。<br>AI風診断で、会える確率を上げる。</p>
-<a class="btn" href="#tools">無料AI診断を使う</a>
+  <div class="wrap">
+    <div>
+      <span class="badge">AI × マチアプ改善</span>
+      <h1>
+        マチアプで損してる男へ。<br>
+        <span class="gold">“会える男”は設計できる。</span>
+      </h1>
+      <p>
+        写真・プロフィール・メッセージをAI風に診断。<br>
+        非モテ感を消して、LINE相談へつなげるモテ改善スタジオ。
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="#tools">無料診断を使う</a>
+        <a class="btn sub" href="#photo">写真生成を見る</a>
+      </div>
+    </div>
+
+    <div class="hero-img">
+      <div class="phone">
+        <div class="screen-card">
+          <p class="small">AI診断結果</p>
+          <div class="fake-photo">彼氏感スコア 86点</div>
+          <p>
+            写真：改善余地あり<br>
+            プロフィール：無難<br>
+            メッセ：質問多め
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section>
-<div class="grid">
-<div class="card">
-<h2>このサイトでできること</h2>
-<p>✔ モテ診断スコア<br>✔ プロフィール添削<br>✔ メッセ生成<br>✔ 彼氏感写真プロンプト<br>✔ デート提案<br>✔ LINE相談導線</p>
-</div>
-<div class="card">
-<h2>売れる導線</h2>
-<p>X投稿 → 無料AI診断 → スクショ → LINE相談 → AI写真販売 / 講習 / コンサル</p>
-</div>
-</div>
+  <div class="wrap grid three">
+    <div class="card">
+      <h2>写真</h2>
+      <p>自撮り感・業者感を消し、自然な彼氏感へ。</p>
+    </div>
+    <div class="card">
+      <h2>プロフィール</h2>
+      <p>無難な文章を、会いたくなる文章へ。</p>
+    </div>
+    <div class="card">
+      <h2>メッセ</h2>
+      <p>質問攻めをやめて、自然にアポへ進める。</p>
+    </div>
+  </div>
 </section>
 
 <section id="tools">
-<h2 class="gold">無料AIツール</h2>
+  <div class="wrap">
+    <h2 class="gold">無料AIツール</h2>
 
-<div class="grid">
+    <div class="grid two">
 
-<div class="card">
-<h2>① モテ診断スコア</h2>
-<p class="small">今の悩みを選ぶだけで改善優先度を出します。</p>
-<select id="worry">
-<option>マッチしない</option>
-<option>返信が来ない</option>
-<option>会うまで進まない</option>
-<option>写真が弱い</option>
-<option>プロフィールが弱い</option>
-</select>
-<button onclick="diagnose()">診断する</button>
-<div id="scoreResult" class="result"></div>
-</div>
+      <div class="card">
+        <h2>① モテ診断スコア</h2>
+        <select id="worry">
+          <option>マッチしない</option>
+          <option>返信が来ない</option>
+          <option>会うまで進まない</option>
+          <option>写真が弱い</option>
+          <option>プロフィールが弱い</option>
+        </select>
+        <button onclick="diagnose()">診断する</button>
+        <div id="scoreResult" class="result"></div>
+      </div>
 
-<div class="card">
-<h2>② プロフィール添削</h2>
-<p class="small">今のプロフィール文を入れてください。</p>
-<textarea id="profile" rows="5" placeholder="例：休日はカフェ巡りが好きです。よろしくお願いします。"></textarea>
-<button onclick="reviewProfile()">添削する</button>
-<div id="profileResult" class="result"></div>
-<button onclick="copyText('profileResult')">結果をコピー</button>
-</div>
+      <div class="card">
+        <h2>② プロフィール添削</h2>
+        <textarea id="profile" rows="5" placeholder="今のプロフィールを入力"></textarea>
+        <button onclick="reviewProfile()">添削する</button>
+        <div id="profileResult" class="result"></div>
+        <button onclick="copyText('profileResult')">結果をコピー</button>
+      </div>
 
-<div class="card">
-<h2>③ メッセ生成</h2>
-<p class="small">相手のプロフィールや会話を入力。</p>
-<textarea id="message" rows="5" placeholder="例：相手が『カフェ好きです』と書いている"></textarea>
-<select id="tone">
-<option>自然に距離を縮める</option>
-<option>デートに繋げる</option>
-<option>少し余裕ある感じ</option>
-</select>
-<button onclick="makeMessage()">返信を作る</button>
-<div id="messageResult" class="result"></div>
-<button onclick="copyText('messageResult')">結果をコピー</button>
-</div>
+      <div class="card">
+        <h2>③ メッセ生成</h2>
+        <textarea id="message" rows="5" placeholder="相手のプロフィールや会話を入力"></textarea>
+        <select id="tone">
+          <option>自然に距離を縮める</option>
+          <option>デートに繋げる</option>
+          <option>少し余裕ある感じ</option>
+        </select>
+        <button onclick="makeMessage()">返信を作る</button>
+        <div id="messageResult" class="result"></div>
+        <button onclick="copyText('messageResult')">結果をコピー</button>
+      </div>
 
-<div class="card">
-<h2>④ 彼氏感メーカー</h2>
-<p class="small">作りたい写真の雰囲気を選択。</p>
-<select id="photoStyle">
-<option>夜カフェ</option>
-<option>街中デート</option>
-<option>自然光カフェ</option>
-<option>インスタ風ミラー自撮り</option>
-<option>映画っぽい夜道</option>
-</select>
-<button onclick="makePhotoIdea()">写真案を作る</button>
-<div id="photoResult" class="result"></div>
-<div id="photoPreview" class="photo-preview night">ここに写真イメージが表示されます</div>
-<button onclick="copyText('photoResult')">プロンプトをコピー</button>
-</div>
+      <div class="card">
+        <h2>④ デート提案メーカー</h2>
+        <input id="dateKeyword" placeholder="例：カフェ、抹茶、映画、散歩">
+        <button onclick="makeDatePlan()">デート提案を作る</button>
+        <div id="dateResult" class="result"></div>
+        <button onclick="copyText('dateResult')">結果をコピー</button>
+      </div>
 
-<div class="card">
-<h2>⑤ デート提案メーカー</h2>
-<p class="small">相手の趣味を入れると自然な誘い方を作ります。</p>
-<input id="dateKeyword" placeholder="例：カフェ、抹茶、映画、散歩">
-<button onclick="makeDatePlan()">デート提案を作る</button>
-<div id="dateResult" class="result"></div>
-<button onclick="copyText('dateResult')">結果をコピー</button>
-</div>
+    </div>
+  </div>
+</section>
 
-</div>
+<section id="photo">
+  <div class="wrap">
+    <h2 class="gold">AI彼氏感写真メーカー</h2>
+    <p>
+      無料版では“生成風プレビュー”と“本生成用プロンプト”を作成します。<br>
+      実際の写真生成はLINE相談へ誘導できます。
+    </p>
+
+    <div class="grid two">
+
+      <div class="card">
+        <h2>写真の雰囲気を選ぶ</h2>
+
+        <select id="photoStyle">
+          <option>夜カフェ</option>
+          <option>街中デート</option>
+          <option>自然光カフェ</option>
+          <option>インスタ風ミラー自撮り</option>
+          <option>映画っぽい夜道</option>
+        </select>
+
+        <select id="photoMood">
+          <option>清潔感重視</option>
+          <option>彼氏感強め</option>
+          <option>大人っぽい余裕</option>
+          <option>自然体で親しみやすい</option>
+        </select>
+
+        <button onclick="generatePhoto()">AI写真を生成する</button>
+
+        <div id="photoLoading" class="loading">
+          <div class="loader"></div>
+          AIが写真構図を生成中...
+        </div>
+
+        <div id="photoResult" class="result"></div>
+        <button onclick="copyText('photoResult')">プロンプトをコピー</button>
+      </div>
+
+      <div class="card">
+        <h2>生成プレビュー</h2>
+        <div id="photoPreview" class="photo-preview night">
+          <div>
+            📸 ここに生成風プレビューが表示されます<br>
+            <span class="small">雰囲気を選んで生成してください</span>
+          </div>
+        </div>
+        <a class="btn" href="https://lin.ee/O8lK7u6" target="_blank">この写真をLINEで依頼する</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <h2 class="gold">販売メニュー</h2>
+    <div class="grid three">
+
+      <div class="card">
+        <h2>AI写真生成</h2>
+        <div class="price">1枚 500円〜</div>
+        <p>自然な彼氏感・安心感・清潔感を設計。</p>
+      </div>
+
+      <div class="card">
+        <h2>プロフィール添削</h2>
+        <div class="price">3,000円〜</div>
+        <p>非モテ感・違和感・自慢感を消す。</p>
+      </div>
+
+      <div class="card">
+        <h2>恋愛コンサル</h2>
+        <div class="price">個別相談</div>
+        <p>写真・会話・アポ導線まで改善。</p>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <section>
-<h2 class="gold">販売メニュー</h2>
-<div class="grid">
-<div class="card"><h2>AI写真生成</h2><div class="price">1枚 500円〜</div><p>自然な彼氏感・安心感・清潔感を設計。</p></div>
-<div class="card"><h2>プロフィール添削</h2><div class="price">3,000円〜</div><p>非モテ感・違和感・自慢感を消す。</p></div>
-<div class="card"><h2>恋愛コンサル</h2><div class="price">個別相談</div><p>写真・会話・アポ導線まで改善。</p></div>
-</div>
+  <div class="wrap">
+    <h2 class="gold" style="text-align:center;">実績</h2>
+    <div class="grid three">
+
+      <div class="card">
+        <h2>講習生300人以上</h2>
+        <p>初心者〜40代以上まで対応。</p>
+      </div>
+
+      <div class="card">
+        <h2>AI写真改善</h2>
+        <p>業者感を消し、自然な彼氏感へ。</p>
+      </div>
+
+      <div class="card">
+        <h2>恋愛設計</h2>
+        <p>写真・文章・会話をまとめて改善。</p>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <section>
-<h2 class="gold" style="text-align:center;">実績</h2>
-<div class="grid">
-<div class="card"><h2>講習生300人以上</h2><p>初心者〜40代以上まで、マチアプ・写真・メッセ改善を指導。</p></div>
-<div class="card"><h2>AI写真改善</h2><p>“業者感”を消し、自然な彼氏感・安心感を設計。</p></div>
-<div class="card"><h2>恋愛設計サポート</h2><p>プロフィール・会話・写真までまとめて改善。</p></div>
-</div>
+  <div class="wrap">
+    <h2 class="gold" style="text-align:center;">Before / After</h2>
+
+    <div class="grid two">
+      <div class="card">
+        <h2>Before</h2>
+        <p>
+          ・自撮り感が強い<br>
+          ・清潔感が伝わらない<br>
+          ・プロフィールが無難<br>
+          ・質問ばかりのメッセ<br>
+          ・会う理由がない
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>After</h2>
+        <p>
+          ・自然な彼氏感<br>
+          ・安心感が伝わる写真<br>
+          ・会いたくなるプロフィール<br>
+          ・返信しやすい会話<br>
+          ・自然にアポへ進める
+        </p>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <section>
-<h2 class="gold" style="text-align:center;">Before / After</h2>
-<div class="grid">
-<div class="card"><h2>Before</h2><p>・自撮り感が強い<br>・清潔感が伝わらない<br>・プロフィールが無難<br>・質問ばかりのメッセ<br>・会う理由が作れていない</p></div>
-<div class="card"><h2>After</h2><p>・自然な彼氏感<br>・安心感が伝わる写真<br>・会いたくなるプロフィール<br>・返信しやすい会話設計<br>・自然にアポへ進める</p></div>
-</div>
+  <div class="wrap">
+    <h2 class="gold" style="text-align:center;">口コミイメージ</h2>
+
+    <div class="grid three">
+      <div class="card">
+        <p>「写真を変えただけで反応が明らかに変わりました」</p>
+        <span class="small">30代男性</span>
+      </div>
+
+      <div class="card">
+        <p>「プロフィールの違和感を直したら返信が増えました」</p>
+        <span class="small">40代男性</span>
+      </div>
+
+      <div class="card">
+        <p>「何を送ればいいか迷わなくなりました」</p>
+        <span class="small">初心者男性</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <section>
-<h2 class="gold" style="text-align:center;">よくある質問</h2>
-<div class="grid">
-<div class="card"><h2>Q. 初心者でも大丈夫？</h2><p>大丈夫です。写真・文章・会話の順番で整えれば変わります。</p></div>
-<div class="card"><h2>Q. 40代でも使える？</h2><p>使えます。若作りではなく、安心感と余裕を設計します。</p></div>
-<div class="card"><h2>Q. AI写真は不自然にならない？</h2><p>“盛る”より“違和感を消す”方向で作るので自然に寄せられます。</p></div>
-</div>
+  <div class="wrap">
+    <h2 class="gold" style="text-align:center;">よくある質問</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h2>初心者でも大丈夫？</h2>
+        <p>大丈夫です。写真・プロフィール・メッセの順番で整えます。</p>
+      </div>
+
+      <div class="card">
+        <h2>40代でも使える？</h2>
+        <p>使えます。若作りではなく、安心感と余裕を設計します。</p>
+      </div>
+
+      <div class="card">
+        <h2>AI写真は不自然にならない？</h2>
+        <p>盛るより違和感を消す方向で作ります。</p>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section>
-<div class="card" style="text-align:center;">
-<h2>無料相談はこちら</h2>
-<p>診断結果をスクショしてLINEで送ってください。</p>
-<a class="btn" href="https://lin.ee/O8lK7u6" target="_blank">LINEで相談する</a>
-</div>
+<section id="line">
+  <div class="wrap">
+    <div class="card" style="text-align:center;">
+      <h2>無料相談はこちら</h2>
+      <p>診断結果・生成プロンプトをスクショしてLINEで送ってください。</p>
+
+      <div>
+        <span class="pill">AI写真相談</span>
+        <span class="pill">プロフィール添削</span>
+        <span class="pill">メッセ改善</span>
+      </div>
+
+      <a class="btn" href="https://lin.ee/O8lK7u6" target="_blank">LINEで相談する</a>
+    </div>
+  </div>
 </section>
 
 <footer>
-Mote AI Studio<br>
-モテはセンスじゃない。設計できる。
+  Mote AI Studio<br>
+  モテはセンスじゃない。設計できる。
 </footer>
 
 <script>
 function diagnose(){
-const worry=document.getElementById("worry").value;
-const score=Math.floor(Math.random()*16)+72;
-document.getElementById("scoreResult").innerHTML=
+  const worry=document.getElementById("worry").value;
+  const score=Math.floor(Math.random()*16)+72;
+
+  document.getElementById("scoreResult").innerHTML=
 `<div class="score">${score}点</div>
 悩み：${worry}
 
@@ -196,10 +592,15 @@ document.getElementById("scoreResult").innerHTML=
 }
 
 function reviewProfile(){
-const text=document.getElementById("profile").value;
-const result=document.getElementById("profileResult");
-if(!text){result.innerText="プロフィール文を入力してください。";return;}
-result.innerText=
+  const text=document.getElementById("profile").value;
+  const result=document.getElementById("profileResult");
+
+  if(!text){
+    result.innerText="プロフィール文を入力してください。";
+    return;
+  }
+
+  result.innerText=
 `診断結果：
 今の文章は悪くないですが、“会いたくなる理由”が弱いです。
 
@@ -213,33 +614,37 @@ result.innerText=
 休日はカフェでゆっくりしたり、散歩しながら美味しい店を探すのが好きです。
 落ち着いた雰囲気で話せる人と、自然体で仲良くなれたら嬉しいです。
 
-一言追加：
-「おすすめのお店あったら教えてください」
-これで相手が返信しやすくなります。`;
+追加一文：
+おすすめのお店あったら教えてください。`;
 }
 
 function makeMessage(){
-const text=document.getElementById("message").value;
-const tone=document.getElementById("tone").value;
-const result=document.getElementById("messageResult");
-if(!text){result.innerText="会話内容を入力してください。";return;}
+  const text=document.getElementById("message").value;
+  const tone=document.getElementById("tone").value;
+  const result=document.getElementById("messageResult");
 
-let main="カフェ好きなんですね。雰囲気いいお店探すの好きなので、そういう話めっちゃ合いそうです。";
-let sub="自分もカフェ結構好きです。落ち着いて話せる場所の方が好きなので、かなり共感しました。";
-let close="今度、雰囲気いいカフェ見つけたら一緒に行きましょう。";
+  if(!text){
+    result.innerText="会話内容を入力してください。";
+    return;
+  }
 
-if(tone==="デートに繋げる"){
-main="それめっちゃいいですね。自分もそういうお店好きなので、今度一緒に行ったら普通に楽しそうです。";
-sub="ちなみに抹茶系とか落ち着いたカフェって好きですか？";
-close="反応よければ、日程を軽く聞く流れが自然です。";
-}
-if(tone==="少し余裕ある感じ"){
-main="それ好きなの、なんか雰囲気合いそうです。自分も静かに話せる場所の方が好きです。";
-sub="無理に盛り上げるより、自然に話せる感じがいいですよね。";
-close="余裕感を出すなら質問を詰めすぎないのが大事です。";
-}
+  let main="カフェ好きなんですね。雰囲気いいお店探すの好きなので、そういう話めっちゃ合いそうです。";
+  let sub="自分もカフェ結構好きです。落ち着いて話せる場所の方が好きなので、かなり共感しました。";
+  let close="まずは共感で返して、反応が良ければ軽く誘う流れが自然です。";
 
-result.innerText=
+  if(tone==="デートに繋げる"){
+    main="それめっちゃいいですね。自分もそういうお店好きなので、今度一緒に行ったら普通に楽しそうです。";
+    sub="ちなみに抹茶系とか落ち着いたカフェって好きですか？";
+    close="反応がよければ『今週か来週どこか空いてます？』でOKです。";
+  }
+
+  if(tone==="少し余裕ある感じ"){
+    main="それ好きなの、なんか雰囲気合いそうです。自分も静かに話せる場所の方が好きです。";
+    sub="無理に盛り上げるより、自然に話せる感じがいいですよね。";
+    close="質問を詰めすぎず、余白を残すのが大事です。";
+  }
+
+  result.innerText=
 `おすすめ返信：
 「${main}」
 
@@ -253,41 +658,16 @@ ${close}
 質問攻めより、“共感＋軽い自己開示＋自然な誘導”が強いです。`;
 }
 
-function makePhotoIdea(){
-const style=document.getElementById("photoStyle").value;
-const result=document.getElementById("photoResult");
-const preview=document.getElementById("photoPreview");
-
-let cls="night",title="夜カフェ彼氏感",mood="暖色ライト、コーヒー、少し横を向いた自然な笑顔";
-if(style==="街中デート"){cls="street";title="街中デート彼氏感";mood="ネオン、夜道、歩いている途中の自然な一枚";}
-if(style==="自然光カフェ"){cls="cafe";title="自然光カフェ";mood="昼カフェ、柔らかい光、清潔感、安心感";}
-if(style==="インスタ風ミラー自撮り"){cls="mirror";title="ミラー自撮り";mood="暗めの部屋、黒服、シンプル、雰囲気重視";}
-if(style==="映画っぽい夜道"){cls="movie";title="映画っぽい夜道";mood="街灯、フィルム感、後ろ姿、エモい空気感";}
-
-result.innerText=
-`おすすめ写真設計：${style}
-
-構図：
-友達に自然に撮られたような距離感。
-
-表情：
-カメラ目線すぎず、少し笑う。
-
-服装：
-黒・白・グレー中心。清潔感重視。
-
-プロンプト：
-スマホで撮影したような自然な日本人男性の写真、${style}、彼氏感、清潔感、自然な笑顔、少しブレ、フィルムグレイン、リアル、過度な加工なし、iPhoneカメラ風、自然な生活感。`;
-
-preview.className="photo-preview "+cls;
-preview.innerHTML=`📸 ${title}<br><span style="font-size:13px;color:#eee;">${mood}</span>`;
-}
-
 function makeDatePlan(){
-const key=document.getElementById("dateKeyword").value;
-const result=document.getElementById("dateResult");
-if(!key){result.innerText="相手の趣味を入力してください。";return;}
-result.innerText=
+  const key=document.getElementById("dateKeyword").value;
+  const result=document.getElementById("dateResult");
+
+  if(!key){
+    result.innerText="相手の趣味を入力してください。";
+    return;
+  }
+
+  result.innerText=
 `デート提案：
 「${key}好きなら、雰囲気いいところ知ってるので今度軽く行きましょう。」
 
@@ -298,13 +678,85 @@ result.innerText=
 「今週か来週なら、どこか空いてます？」
 
 ポイント：
-重く誘わず、“軽く・自然に・相手が断りやすい余白”を残すと返信率が上がります。`;
+重く誘わず、“軽く・自然に・断りやすい余白”を残すと返信率が上がります。`;
+}
+
+function generatePhoto(){
+  const style=document.getElementById("photoStyle").value;
+  const moodType=document.getElementById("photoMood").value;
+  const result=document.getElementById("photoResult");
+  const preview=document.getElementById("photoPreview");
+  const loading=document.getElementById("photoLoading");
+
+  loading.classList.add("active");
+  result.innerText="";
+
+  setTimeout(()=>{
+    loading.classList.remove("active");
+
+    let cls="night";
+    let title="夜カフェ彼氏感";
+    let mood="暖色ライト、コーヒー、自然な笑顔";
+
+    if(style==="街中デート"){
+      cls="street";
+      title="街中デート彼氏感";
+      mood="ネオン、夜道、歩いている途中の自然な一枚";
+    }
+
+    if(style==="自然光カフェ"){
+      cls="cafe";
+      title="自然光カフェ";
+      mood="昼カフェ、柔らかい光、清潔感、安心感";
+    }
+
+    if(style==="インスタ風ミラー自撮り"){
+      cls="mirror";
+      title="ミラー自撮り";
+      mood="暗めの部屋、黒服、シンプル、雰囲気重視";
+    }
+
+    if(style==="映画っぽい夜道"){
+      cls="movie";
+      title="映画っぽい夜道";
+      mood="街灯、フィルム感、後ろ姿、エモい空気感";
+    }
+
+    result.innerText=
+`生成プロンプト：
+スマホで撮影したような自然な日本人男性の写真。
+雰囲気：${style}
+方向性：${moodType}
+清潔感、安心感、彼氏感、自然な笑顔、少しブレ、フィルムグレイン、iPhoneカメラ風、過度な加工なし、リアルな生活感、自然な服装、黒・白・グレー中心。
+
+NG：
+AI感、過度な美肌、ホスト感、業者感、自撮り感、キメすぎ、加工しすぎ。
+
+おすすめ構図：
+友達に撮られたような距離感。
+カメラ目線すぎず、少し横を見る。
+背景はカフェ・夜道・自然光など、生活感が少しある場所。`;
+
+    preview.className="photo-preview "+cls;
+    preview.innerHTML=
+`<div>
+📸 ${title}<br>
+<span style="font-size:13px;color:#eee;">${mood}</span><br><br>
+<span class="small">生成風プレビュー完成</span>
+</div>`;
+  },1400);
 }
 
 function copyText(id){
-const text=document.getElementById(id).innerText;
-navigator.clipboard.writeText(text);
-alert("コピーしました");
+  const text=document.getElementById(id).innerText;
+
+  if(!text){
+    alert("コピーする内容がありません");
+    return;
+  }
+
+  navigator.clipboard.writeText(text);
+  alert("コピーしました");
 }
 </script>
 
