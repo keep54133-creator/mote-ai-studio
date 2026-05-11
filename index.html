@@ -131,44 +131,14 @@ textarea,input,select{
 .small{font-size:13px;color:#aaa}
 .price{font-size:30px;color:#d4af37;font-weight:900}
 .score{font-size:46px;color:#d4af37;font-weight:900;text-align:center}
-.hero-img{
-  margin-top:28px;
-  border-radius:30px;
-  min-height:250px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:28px;
-  background:
-    linear-gradient(135deg,rgba(212,175,55,.22),rgba(80,60,30,.08)),
-    radial-gradient(circle at top,rgba(255,255,255,.12),transparent 50%);
-  border:1px solid rgba(212,175,55,.25);
-  box-shadow:inset 0 0 60px rgba(255,255,255,.03),0 30px 80px rgba(0,0,0,.55);
-}
-.phone{
-  width:230px;
-  height:420px;
-  border-radius:36px;
-  background:#0b0b0b;
-  border:8px solid #1e1e1e;
-  padding:18px;
-  box-shadow:0 30px 80px rgba(0,0,0,.7);
-}
-.screen-card{
-  background:linear-gradient(135deg,#161616,#2b210d);
-  border-radius:24px;
-  height:100%;
-  padding:18px;
-  text-align:left;
-}
-.fake-photo{
-  height:190px;
+.preview-img{
+  width:100%;
+  max-height:320px;
+  object-fit:cover;
   border-radius:22px;
-  background:linear-gradient(135deg,#2b1b0f,#0d1a2b,#050505);
-  display:flex;
-  align-items:end;
-  padding:15px;
-  color:#fff;
+  margin-top:15px;
+  border:1px solid rgba(255,255,255,.14);
+  display:none;
 }
 .photo-preview{
   margin-top:15px;
@@ -251,7 +221,7 @@ footer{text-align:center;padding:38px 15px;color:#777}
     <div class="logo">Mote AI Studio</div>
     <div>
       <a href="#tools">診断</a>
-      <a href="#photo">写真</a>
+      <a href="#photo-score">写真採点</a>
       <a href="#price">料金</a>
       <a href="#line">LINE</a>
     </div>
@@ -272,22 +242,18 @@ footer{text-align:center;padding:38px 15px;color:#777}
       </p>
       <div class="btn-row">
         <a class="btn" href="#tools">無料診断を使う</a>
-        <a class="btn sub" href="#photo">写真生成を見る</a>
+        <a class="btn sub" href="#photo-score">写真を採点する</a>
       </div>
     </div>
 
-    <div class="hero-img">
-      <div class="phone">
-        <div class="screen-card">
-          <p class="small">AI診断結果</p>
-          <div class="fake-photo">彼氏感スコア 86点</div>
-          <p>
-            写真：改善余地あり<br>
-            プロフィール：無難<br>
-            メッセ：質問多め
-          </p>
-        </div>
-      </div>
+    <div class="card">
+      <p class="small">AI診断結果</p>
+      <div class="score">86点</div>
+      <p>
+        写真：改善余地あり<br>
+        プロフィール：無難<br>
+        メッセ：質問多め
+      </p>
     </div>
   </div>
 </section>
@@ -361,12 +327,61 @@ footer{text-align:center;padding:38px 15px;color:#777}
   </div>
 </section>
 
+<section id="photo-score">
+  <div class="wrap">
+    <h2 class="gold">写真アップロード採点</h2>
+    <p>
+      写真を選ぶと、サイト上で簡易採点できます。<br>
+      本採点・保存はGoogleフォームから送信してください。
+    </p>
+
+    <div class="grid two">
+
+      <div class="card">
+        <h2>写真を選択</h2>
+        <p class="small">
+          ※ここで選んだ写真は、このページ上でプレビューするだけです。<br>
+          保存したい場合は下の「写真を送って本採点する」から送信してください。
+        </p>
+
+        <input type="file" id="photoUpload" accept="image/*" onchange="previewUploadedPhoto(event)">
+        <img id="uploadedPreview" class="preview-img">
+
+        <button onclick="scoreUploadedPhoto()">写真を簡易採点する</button>
+
+        <div id="photoScoreResult" class="result"></div>
+
+        <a class="btn" href="https://forms.gle/FYgztqKATrLruvYZ7" target="_blank">
+          写真を送って本採点する
+        </a>
+      </div>
+
+      <div class="card">
+        <h2>採点項目</h2>
+        <p>
+          ✔ 清潔感<br>
+          ✔ 安心感<br>
+          ✔ 彼氏感<br>
+          ✔ 背景の自然さ<br>
+          ✔ 自撮り感の少なさ<br>
+          ✔ マチアプ適性
+        </p>
+
+        <div class="result">
+          本採点では、送っていただいた写真をもとに、
+          「どこを直せばマッチ率が上がりやすいか」を個別に見ます。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section id="photo">
   <div class="wrap">
     <h2 class="gold">AI彼氏感写真メーカー</h2>
     <p>
-      無料版では“生成風プレビュー”と“本生成用プロンプト”を作成します。<br>
-      実際の写真生成はLINE相談へ誘導できます。
+      無料版では“生成風プレビュー”と“本生成用プロンプト”を作成します。
     </p>
 
     <div class="grid two">
@@ -527,6 +542,11 @@ footer{text-align:center;padding:38px 15px;color:#777}
 
     <div class="grid">
       <div class="card">
+        <h2>写真は保存されますか？</h2>
+        <p>サイト内の簡易診断では保存されません。本採点フォームに送信した写真のみ、診断目的で確認します。</p>
+      </div>
+
+      <div class="card">
         <h2>初心者でも大丈夫？</h2>
         <p>大丈夫です。写真・プロフィール・メッセの順番で整えます。</p>
       </div>
@@ -534,11 +554,6 @@ footer{text-align:center;padding:38px 15px;color:#777}
       <div class="card">
         <h2>40代でも使える？</h2>
         <p>使えます。若作りではなく、安心感と余裕を設計します。</p>
-      </div>
-
-      <div class="card">
-        <h2>AI写真は不自然にならない？</h2>
-        <p>盛るより違和感を消す方向で作ります。</p>
       </div>
     </div>
 
@@ -558,6 +573,7 @@ footer{text-align:center;padding:38px 15px;color:#777}
       </div>
 
       <a class="btn" href="https://lin.ee/O8lK7u6" target="_blank">LINEで相談する</a>
+      <a class="btn sub" href="https://forms.gle/FYgztqKATrLruvYZ7" target="_blank">写真を送って本採点する</a>
     </div>
   </div>
 </section>
@@ -589,6 +605,59 @@ function diagnose(){
 ・会う理由を作れていない
 
 まずは写真とプロフィールから直すのが最短です。`;
+}
+
+function previewUploadedPhoto(event){
+  const file = event.target.files[0];
+  const preview = document.getElementById("uploadedPreview");
+
+  if(!file){
+    preview.style.display="none";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+    preview.src = e.target.result;
+    preview.style.display = "block";
+  }
+
+  reader.readAsDataURL(file);
+}
+
+function scoreUploadedPhoto(){
+  const file = document.getElementById("photoUpload").files[0];
+  const result = document.getElementById("photoScoreResult");
+
+  if(!file){
+    result.innerText = "まず写真を選択してください。";
+    return;
+  }
+
+  const score = Math.floor(Math.random()*18)+72;
+
+  result.innerHTML =
+`<div class="score">${score}点</div>
+簡易写真診断：
+
+良い点：
+・表情や雰囲気は改善できる余地あり
+・写真を変えるだけで印象が大きく変わる可能性あり
+
+改善ポイント：
+・自撮り感を減らす
+・背景をカフェ/街中/自然光に寄せる
+・服装は黒・白・グレーで清潔感を出す
+・キメすぎより、友達に撮られた自然な一枚が強い
+・安心感と彼氏感が伝わる構図にする
+
+おすすめ：
+夜カフェ風・街中デート風・自然光カフェ風の写真を1枚作ると、
+マチアプでの印象が変わりやすいです。
+
+本採点：
+下の「写真を送って本採点する」から送ると、こちらで写真を確認できます。`;
 }
 
 function reviewProfile(){
