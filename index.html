@@ -93,6 +93,26 @@ button{
   color:#d4af37;
   font-weight:bold;
 }
+.photo-preview{
+  margin-top:15px;
+  min-height:180px;
+  border-radius:18px;
+  background:#111;
+  border:1px solid #333;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#d4af37;
+  text-align:center;
+  padding:20px;
+  line-height:1.7;
+  font-weight:bold;
+}
+.night-cafe{background:linear-gradient(135deg,#14100b,#3a250d,#0b0b0b)}
+.street-date{background:linear-gradient(135deg,#090909,#10233a,#3a102b)}
+.natural-cafe{background:linear-gradient(135deg,#2c2114,#6b4b2a,#111)}
+.mirror{background:linear-gradient(135deg,#111,#2d2d2d,#080808)}
+.movie-night{background:linear-gradient(135deg,#020202,#182848,#2b1055)}
 footer{
   text-align:center;
   padding:35px 15px;
@@ -120,7 +140,13 @@ footer{
   <div class="grid">
     <div class="card">
       <h2>このサイトでできること</h2>
-      <p>✔ プロフィール添削<br>✔ 返信メッセ生成<br>✔ 彼氏感写真アイデア<br>✔ マチアプ改善診断<br>✔ LINE相談への導線</p>
+      <p>
+        ✔ プロフィール添削<br>
+        ✔ 返信メッセ生成<br>
+        ✔ 彼氏感写真アイデア<br>
+        ✔ マチアプ改善診断<br>
+        ✔ LINE相談への導線
+      </p>
     </div>
 
     <div class="card">
@@ -163,6 +189,7 @@ footer{
       </select>
       <button onclick="makePhotoIdea()">写真案を作る</button>
       <div id="photoResult" class="result"></div>
+      <div id="photoPreview" class="photo-preview">ここに写真イメージが表示されます</div>
     </div>
 
     <div class="card">
@@ -207,86 +234,71 @@ footer{
 </section>
 
 <section>
+  <h2 class="gold" style="text-align:center;">実績</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h2>講習生300人以上</h2>
+      <p>
+        マチアプ・写真・メッセ改善を指導。<br>
+        初心者〜40代以上まで対応。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>AI写真改善</h2>
+      <p>
+        “業者感”を消し、<br>
+        自然な彼氏感・安心感を設計。
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>恋愛設計サポート</h2>
+      <p>
+        プロフィール・会話・写真まで<br>
+        まとめて改善。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="gold" style="text-align:center;">Before / After</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Before</h2>
+      <p>
+        ・自撮り感が強い<br>
+        ・清潔感が伝わらない<br>
+        ・プロフィールが無難<br>
+        ・質問ばかりのメッセ<br>
+        ・会う理由が作れていない
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>After</h2>
+      <p>
+        ・自然な彼氏感<br>
+        ・安心感が伝わる写真<br>
+        ・会いたくなるプロフィール<br>
+        ・返信しやすい会話設計<br>
+        ・自然にアポへ進める
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="card" style="text-align:center;">
     <h2>無料相談はこちら</h2>
     <p>診断結果をスクショしてLINEで送ってください。</p>
     <a class="btn" href="https://lin.ee/O8lK7u6" target="_blank">LINEで相談する</a>
-    <p class="small">※あとで自分のLINEリンクに変更してください。</p>
   </div>
 </section>
-<section>
 
-<h2 class="gold" style="text-align:center;">
-実績
-<section>
-
-<h2 class="gold" style="text-align:center;">
-Before / After
-</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h2>Before</h2>
-
-<p>
-・自撮り感が強い<br>
-・清潔感が伝わらない<br>
-・プロフィールが無難<br>
-・質問ばかりのメッセ
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>After</h2>
-
-<p>
-・自然な彼氏感<br>
-・安心感が伝わる写真<br>
-・会いたくなるプロフィール<br>
-・返信しやすい会話設計
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-</h2>
-
-<div class="grid">
-
-<div class="card">
-<h2>講習生300人以上</h2>
-<p>
-マチアプ・写真・メッセ改善を指導。
-初心者〜40代以上まで対応。
-</p>
-</div>
-
-<div class="card">
-<h2>AI写真改善</h2>
-<p>
-“業者感”を消し、
-自然な彼氏感・安心感を設計。
-</p>
-</div>
-
-<div class="card">
-<h2>恋愛設計サポート</h2>
-<p>
-プロフィール・会話・写真まで
-まとめて改善。
-</p>
-</div>
-
-</div>
-
-</section>
 <footer>
   Mote AI Studio<br>
   モテはセンスじゃない。設計できる。
@@ -340,6 +352,35 @@ function makeMessage(){
 function makePhotoIdea(){
   const style = document.getElementById("photoStyle").value;
   const result = document.getElementById("photoResult");
+  const preview = document.getElementById("photoPreview");
+
+  let className = "night-cafe";
+  let title = "夜カフェ彼氏感";
+  let mood = "暖色ライト、コーヒー、少し横を向いた自然な笑顔";
+
+  if(style === "街中デート"){
+    className = "street-date";
+    title = "街中デート彼氏感";
+    mood = "ネオン、夜道、歩いている途中の自然な一枚";
+  }
+
+  if(style === "自然光カフェ"){
+    className = "natural-cafe";
+    title = "自然光カフェ";
+    mood = "昼カフェ、柔らかい光、清潔感、安心感";
+  }
+
+  if(style === "インスタ風ミラー自撮り"){
+    className = "mirror";
+    title = "ミラー自撮り";
+    mood = "暗めの部屋、黒服、シンプル、雰囲気重視";
+  }
+
+  if(style === "映画っぽい夜道"){
+    className = "movie-night";
+    title = "映画っぽい夜道";
+    mood = "街灯、フィルム感、後ろ姿、エモい空気感";
+  }
 
   result.innerText =
 `おすすめ写真設計：${style}
@@ -355,6 +396,14 @@ function makePhotoIdea(){
 
 プロンプト例：
 スマホで撮影したような自然な日本人男性の写真、${style}、彼氏感、清潔感、自然な笑顔、少しブレ、フィルムグレイン、リアル、過度な加工なし。`;
+
+  preview.className = "photo-preview " + className;
+  preview.innerHTML = `
+    <div>
+      📸 ${title}<br>
+      <span style="font-size:13px;color:#eee;">${mood}</span>
+    </div>
+  `;
 }
 
 function diagnose(){
