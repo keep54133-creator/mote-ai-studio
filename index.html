@@ -1,247 +1,358 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mote AI Studio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #0f0f0f;
-      color: white;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+<title>Mote AI Studio</title>
 
-    .hero {
-      text-align: center;
-      padding-top: 90px;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
+body{
+  background:#0f0f0f;
+  color:white;
+  font-family:sans-serif;
+  line-height:1.7;
+}
 
-    .hero p {
-      color: #ccc;
-      font-size: 18px;
-    }
+header{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  background:
+  linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+  url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1400&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      background: #ff2d55;
-      color: white;
-      padding: 15px 28px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.hero h1{
+  font-size:48px;
+  margin-bottom:16px;
+}
 
-    h2 {
-      font-size: 30px;
-      margin-bottom: 25px;
-      text-align: center;
-    }
+.hero p{
+  font-size:18px;
+  opacity:.9;
+  max-width:700px;
+  margin:auto;
+}
 
-    .grid {
-      display: grid;
-      gap: 20px;
-    }
+.hero-btn{
+  display:inline-block;
+  margin-top:28px;
+  padding:16px 30px;
+  background:#06c755;
+  color:white;
+  text-decoration:none;
+  border-radius:999px;
+  font-weight:bold;
+  transition:.3s;
+}
 
-    @media (min-width: 768px) {
-      .grid-3 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .grid-2 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+.hero-btn:hover{
+  transform:scale(1.05);
+}
 
-    .card {
-      background: #1b1b1b;
-      border: 1px solid #333;
-      border-radius: 20px;
-      padding: 25px;
-    }
+section{
+  padding:80px 20px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .card h3 {
-      margin-top: 0;
-      color: #ffcc00;
-    }
+.section-title{
+  font-size:34px;
+  margin-bottom:40px;
+  text-align:center;
+}
 
-    .before-after {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
 
-    .photo-box {
-      background: #2a2a2a;
-      border-radius: 16px;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-weight: bold;
-    }
+.card{
+  background:#1a1a1a;
+  padding:24px;
+  border-radius:20px;
+  transition:.3s;
+}
 
-    .voice {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
+.card:hover{
+  transform:translateY(-5px);
+}
 
-    .avatar {
-      width: 70px;
-      height: 70px;
-      background: #333;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+.card h3{
+  margin-bottom:12px;
+  font-size:22px;
+}
 
-    .faq details {
-      background: #1b1b1b;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 12px;
-    }
+.before-after{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
 
-    .faq summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
+.before-after img{
+  width:100%;
+  border-radius:18px;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #777;
-      border-top: 1px solid #222;
-    }
-  </style>
+.review{
+  background:#1a1a1a;
+  padding:24px;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+.review p{
+  opacity:.9;
+}
+
+.links{
+  display:grid;
+  gap:16px;
+}
+
+.links a{
+  background:#1a1a1a;
+  padding:18px;
+  border-radius:16px;
+  color:white;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.links a:hover{
+  background:#262626;
+}
+
+.x-section{
+  text-align:center;
+}
+
+.x-button{
+  display:inline-block;
+  margin-top:20px;
+  padding:16px 28px;
+  border-radius:999px;
+  background:white;
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.contact-section{
+  text-align:center;
+}
+
+.contact-text{
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:24px;
+  opacity:.9;
+}
+
+.line-button{
+  display:inline-block;
+  background:#06c755;
+  color:#fff;
+  padding:18px 32px;
+  border-radius:999px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 8px 20px rgba(6,199,85,.35);
+  transition:.3s;
+}
+
+.line-button:hover{
+  transform:scale(1.05);
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.5;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+  font-size:34px;
+}
+
+.section-title{
+  font-size:28px;
+}
+
+}
+</style>
 </head>
 
 <body>
 
-  <section class="hero">
+<header>
+  <div class="hero">
     <h1>Mote AI Studio</h1>
-    <p>AI写真・プロフィール添削・恋愛コンサルで<br>マチアプの第一印象を設計する。</p>
-    <a class="btn" href="#consult">無料相談する</a>
-  </section>
 
-  <section>
-    <h2>Before & After</h2>
+    <p>
+      AI写真設計 × マチアプ攻略 × 恋愛導線設計<br>
+      “モテはセンスじゃない。設計。”
+    </p>
+
+    <a href="https://lin.ee/UPZOVebL" class="hero-btn">
+      無料相談はこちら
+    </a>
+  </div>
+</header>
+
+<section>
+  <h2 class="section-title">販売メニュー</h2>
+
+  <div class="grid">
+
     <div class="card">
-      <div class="before-after">
-        <div>
-          <div class="photo-box">Before 写真</div>
-          <p>自己満写真・雰囲気が弱い</p>
-        </div>
-        <div>
-          <div class="photo-box">After 写真</div>
-          <p>清潔感・人柄・モテ感を設計</p>
-        </div>
-      </div>
+      <h3>AI写真生成</h3>
+      <p>
+        マチアプ・インスタで反応が取れる
+        “自然なモテ写真”を設計。
+      </p>
     </div>
-  </section>
 
-  <section>
-    <h2>販売メニュー</h2>
-    <div class="grid grid-3">
-      <div class="card">
-        <h3>AI写真生成</h3>
-        <p>マチアプ・インスタ用に、自然でモテるAI写真を作成。</p>
-      </div>
-
-      <div class="card">
-        <h3>プロフィール添削</h3>
-        <p>女性に刺さる自己紹介文へ改善。違和感をなくします。</p>
-      </div>
-
-      <div class="card">
-        <h3>恋愛コンサル</h3>
-        <p>写真・メッセ・会話・アポ導線まで個別で設計。</p>
-      </div>
+    <div class="card">
+      <h3>プロフィール添削</h3>
+      <p>
+        マッチ率・返信率を上げる
+        プロフィールを作成。
+      </p>
     </div>
-  </section>
 
-  <section>
-    <h2>Tips販売リンク</h2>
-    <div class="grid grid-2">
-      <a class="card" href="https://tips.jp/s/8XW6XS/d/dac" target="_blank">
-        <h3>AI写真でマチアプ&インスタ無双</h3>
-        <p>写真設計を学びたい人はこちら</p>
-      </a>
-
-      <a class="card" href="https://tips.jp/s/fcQP12/d/dac" target="_blank">
-        <h3>武装ネオナンパ理論</h3>
-        <p>ストリート攻略を学びたい人はこちら</p>
-      </a>
+    <div class="card">
+      <h3>恋愛コンサル</h3>
+      <p>
+        メッセ・初アポ・会話・
+        ナンパまでトータル改善。
+      </p>
     </div>
-  </section>
 
-  <section>
-    <h2>講習生の声 & 口コミ</h2>
-    <div class="grid grid-2">
-      <div class="card voice">
-        <div class="avatar"></div>
-        <p>写真を変えただけでマッチ数が明らかに増えました。</p>
-      </div>
+  </div>
+</section>
 
-      <div class="card voice">
-        <div class="avatar"></div>
-        <p>プロフィールの見せ方が変わって返信率が上がりました。</p>
-      </div>
-    </div>
-  </section>
+<section>
+  <h2 class="section-title">Before / After</h2>
 
-  <section>
-    <h2>Xでも発信中</h2>
-    <div class="card" style="text-align:center;">
-      <p>マチアプ・AI写真・恋愛設計について発信中。</p>
-      <a class="btn" href="https://x.com/kzdazo55" target="_blank">@kzdazo55 を見る</a>
-    </div>
-  </section>
+  <div class="before-after">
 
-  <section class="faq">
-    <h2>よくある質問</h2>
+    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop">
 
-    <details>
-      <summary>AI写真だけでも依頼できますか？</summary>
-      <p>はい。AI写真生成だけでも可能です。</p>
-    </details>
+    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop">
 
-    <details>
-      <summary>恋愛初心者でも大丈夫ですか？</summary>
-      <p>大丈夫です。写真・プロフィール・会話まで順番に整えます。</p>
-    </details>
+  </div>
+</section>
 
-    <details>
-      <summary>無料相談はできますか？</summary>
-      <p>はい。まずは現在の悩みを送ってください。</p>
-    </details>
-  </section>
+<section>
+  <h2 class="section-title">講習生の声</h2>
 
-  <section id="consult">
-    <h2>無料相談</h2>
-    <div class="card" style="text-align:center;">
-      <p>写真・プロフィール・マチアプの悩みを送ってください。</p>
-      <a class="btn" href="https://forms.gle/FYgztqKATrLruvYZ7" target="_blank">
-        無料相談フォームへ
-      </a>
-    </div>
-  </section>
+  <div class="review">
+    <p>
+      「AI写真変えただけでマッチ率かなり変わりました」
+    </p>
+  </div>
 
-  <footer>
-    © Mote AI Studio
-  </footer>
+  <div class="review">
+    <p>
+      「メッセ添削してもらって返信率めっちゃ上がった」
+    </p>
+  </div>
+
+  <div class="review">
+    <p>
+      「雰囲気の作り方が理解できた」
+    </p>
+  </div>
+
+</section>
+
+<section>
+  <h2 class="section-title">Tips販売</h2>
+
+  <div class="links">
+
+    <a href="https://tips.jp/s/fcQP12/d/dac" target="_blank">
+      ⚔️武装ネオナンパ理論⚔️
+    </a>
+
+    <a href="https://tips.jp/s/Fee16n/d/dac" target="_blank">
+      実録：600人斬りナンパ講師逮捕〜刑務所の流れ
+    </a>
+
+    <a href="https://tips.jp/s/oH9aYp/d/dac" target="_blank">
+      👑アラフィフ・オブ・ストリート
+    </a>
+
+    <a href="https://tips.jp/s/8XW6XS/d/dac" target="_blank">
+      📷AI写真でマチアプ&インスタ無双
+    </a>
+
+  </div>
+</section>
+
+<section class="x-section">
+  <h2 class="section-title">Xでも発信中</h2>
+
+  <p>
+    マチアプ攻略 / AI写真 / 恋愛設計を毎日発信
+  </p>
+
+  <a
+    href="https://x.com/kzdazo55"
+    target="_blank"
+    class="x-button"
+  >
+    @kzdazo55
+  </a>
+</section>
+
+<section class="contact-section">
+
+  <h2 class="section-title">
+    無料相談受付中
+  </h2>
+
+  <p class="contact-text">
+    ✔ AI写真添削<br>
+    ✔ マチアププロフィール相談<br>
+    ✔ メッセ添削<br>
+    ✔ 恋愛相談<br><br>
+
+    「何がダメか分からない」
+    人ほど変わります。
+  </p>
+
+  <a
+    href="https://lin.ee/UPZOVebL"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="line-button"
+  >
+    LINEで無料相談する
+  </a>
+
+</section>
+
+<footer>
+  © Mote AI Studio
+</footer>
 
 </body>
 </html>
