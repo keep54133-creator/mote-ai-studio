@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mote AI Studio Link</title>
+  <title>Mote AI Studio</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -12,221 +13,299 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-      background: linear-gradient(180deg, #16131f, #2b1d3a, #120f18);
-      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(120, 120, 255, 0.22), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255, 180, 140, 0.18), transparent 35%),
+        linear-gradient(180deg, #f7f3ee 0%, #eee7df 45%, #e9e1d8 100%);
+      color: #1f1f1f;
       min-height: 100vh;
     }
 
     .page {
-      width: 100%;
       max-width: 430px;
       margin: 0 auto;
-      min-height: 100vh;
-      padding: 28px 18px 40px;
+      padding: 24px 18px 48px;
+    }
+
+    .hero {
       position: relative;
+      border-radius: 32px;
       overflow: hidden;
+      min-height: 420px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.62)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
     }
 
-    .bg-glow {
+    .badge {
       position: absolute;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: rgba(173, 92, 255, 0.35);
-      filter: blur(60px);
-      top: -80px;
-      right: -100px;
-      z-index: 0;
-    }
-
-    .card {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .avatar {
-      width: 112px;
-      height: 112px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.8);
-      box-shadow: 0 0 30px rgba(255,255,255,0.25);
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 6px;
+      top: 18px;
+      left: 18px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      font-size: 12px;
+      font-weight: 700;
       letter-spacing: 0.04em;
     }
 
-    .tagline {
-      font-size: 14px;
-      opacity: 0.86;
-      line-height: 1.7;
-      margin-bottom: 22px;
+    .hero h1 {
+      color: white;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
     }
 
-    .main-copy {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(14px);
-      border-radius: 22px;
+    .hero p {
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .profile {
+      margin-top: 18px;
+      background: rgba(255,255,255,0.66);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 26px;
       padding: 18px;
-      margin-bottom: 18px;
-      text-align: left;
-      line-height: 1.75;
-      font-size: 14px;
+      box-shadow: 0 18px 45px rgba(80,60,40,0.08);
     }
 
-    .section-title {
-      text-align: left;
+    .profile-title {
       font-size: 15px;
-      font-weight: bold;
-      margin: 24px 0 12px;
-      opacity: 0.95;
+      font-weight: 800;
+      margin-bottom: 8px;
     }
 
-    .link-btn {
+    .profile-text {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .main-btn {
       display: block;
-      width: 100%;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 22px;
       text-decoration: none;
       color: white;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 18px;
-      padding: 15px 16px;
-      margin-bottom: 12px;
-      font-weight: bold;
-      text-align: left;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: 0.2s;
-    }
-
-    .link-btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.18);
-    }
-
-    .primary {
-      background: linear-gradient(135deg, #ff4fd8, #8b5cf6);
-      border: none;
       text-align: center;
+      font-weight: 800;
       font-size: 16px;
+      background: linear-gradient(135deg, #111 0%, #333 100%);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
     }
 
-    .sub {
+    .main-btn span {
       display: block;
+      margin-top: 5px;
       font-size: 12px;
-      font-weight: normal;
-      opacity: 0.78;
-      margin-top: 4px;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section h2 {
+      font-size: 15px;
+      margin-bottom: 14px;
+      letter-spacing: 0.06em;
+      color: #333;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: #1f1f1f;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 24px;
+      padding: 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 14px 36px rgba(80,60,40,0.08);
+      transition: 0.2s ease;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      background: white;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #f1ebe4;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .link-card strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .link-card small {
+      color: #666;
+      line-height: 1.5;
+      font-size: 12px;
     }
 
     .voice {
-      background: rgba(255,255,255,0.09);
-      border-radius: 18px;
-      padding: 14px;
-      font-size: 13px;
-      line-height: 1.7;
-      text-align: left;
+      background: rgba(255,255,255,0.64);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 22px;
+      padding: 15px;
       margin-bottom: 10px;
-      border: 1px solid rgba(255,255,255,0.13);
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
     }
 
     .footer {
       text-align: center;
+      margin-top: 30px;
       font-size: 12px;
-      opacity: 0.6;
-      margin-top: 28px;
+      color: #777;
     }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <div class="bg-glow"></div>
 
-    <section class="card">
-      <img class="avatar" src="https://i.imgur.com/8Km9tLL.jpeg" alt="プロフィール画像">
+    <section class="hero">
+      <div class="badge">MOTE AI STUDIO</div>
 
-      <h1>Mote AI Studio</h1>
-
-      <p class="tagline">
-        モテは設計で量産できる。<br>
-        マチアプ・AI写真・メッセ添削・恋愛コンサル
+      <h1>モテは、<br>設計できる。</h1>
+      <p>
+        写真・プロフィール・メッセージを整えて、<br>
+        マチアプの第一印象を変える。
       </p>
+    </section>
 
-      <div class="main-copy">
-        📷 AI写真で第一印象を変える。<br>
-        💬 メッセ添削で返信率を上げる。<br>
-        🧠 恋愛導線を設計して、出会いを増やす。
+    <section class="profile">
+      <div class="profile-title">恋愛初心者向けのモテ設計</div>
+      <div class="profile-text">
+        AI写真生成、プロフィール添削、メッセ添削、恋愛コンサルまで。  
+        “なんとなく頑張る恋愛”ではなく、女性に伝わる見せ方を作ります。
       </div>
+    </section>
 
-      <a class="link-btn primary" href="https://forms.gle/FYgztqKATrLruvYZ7" target="_blank">
-        無料相談はこちら
-        <span class="sub">マチアプ・写真・メッセ相談OK</span>
+    <a class="main-btn" href="https://forms.gle/FYgztqKATrLruvYZ7" target="_blank">
+      無料相談する
+      <span>写真・プロフィール・メッセ相談OK</span>
+    </a>
+
+    <section class="section">
+      <h2>MENU</h2>
+
+      <a class="link-card" href="#">
+        <div class="icon">📷</div>
+        <div>
+          <strong>AI写真生成</strong>
+          <small>マチアプ・インスタ用の自然な写真を設計</small>
+        </div>
       </a>
 
-      <div class="section-title">販売メニュー</div>
-
-      <a class="link-btn" href="#">
-        📷 AI写真生成
-        <span class="sub">マチアプ・インスタ用の自然な写真を設計</span>
+      <a class="link-card" href="#">
+        <div class="icon">📝</div>
+        <div>
+          <strong>プロフィール添削</strong>
+          <small>女性に刺さるプロフィール文へ改善</small>
+        </div>
       </a>
 
-      <a class="link-btn" href="#">
-        📝 プロフィール添削
-        <span class="sub">女性に刺さるプロフィール文へ改善</span>
+      <a class="link-card" href="#">
+        <div class="icon">💬</div>
+        <div>
+          <strong>メッセ添削</strong>
+          <small>返信が来やすい会話設計に修正</small>
+        </div>
       </a>
 
-      <a class="link-btn" href="#">
-        💬 メッセ添削
-        <span class="sub">返信が来やすい会話設計に修正</span>
+      <a class="link-card" href="#">
+        <div class="icon">🧠</div>
+        <div>
+          <strong>恋愛コンサル</strong>
+          <small>マチアプ・デート・会話を個別設計</small>
+        </div>
+      </a>
+    </section>
+
+    <section class="section">
+      <h2>TIPS</h2>
+
+      <a class="link-card" href="https://tips.jp/s/8XW6XS/d/dac" target="_blank">
+        <div class="icon">✨</div>
+        <div>
+          <strong>AI写真でマチアプ&インスタ無双</strong>
+          <small>写真設計の基礎を学ぶ</small>
+        </div>
       </a>
 
-      <a class="link-btn" href="#">
-        🧠 恋愛コンサル
-        <span class="sub">マチアプ・デート・会話・導線を個別設計</span>
+      <a class="link-card" href="https://tips.jp/s/fcQP12/d/dac" target="_blank">
+        <div class="icon">⚔️</div>
+        <div>
+          <strong>武装ネオナンパ理論</strong>
+          <small>対面恋愛の設計を学ぶ</small>
+        </div>
       </a>
 
-      <div class="section-title">Tips販売リンク</div>
-
-      <a class="link-btn" href="https://tips.jp/s/8XW6XS/d/dac" target="_blank">
-        📷 AI写真でマチアプ&インスタ無双
+      <a class="link-card" href="https://tips.jp/s/oH9aYp/d/dac" target="_blank">
+        <div class="icon">👑</div>
+        <div>
+          <strong>アラフィフ・オブ・ストリート</strong>
+          <small>年齢を武器に変える恋愛戦略</small>
+        </div>
       </a>
+    </section>
 
-      <a class="link-btn" href="https://tips.jp/s/fcQP12/d/dac" target="_blank">
-        ⚔️ 武装ネオナンパ理論
-      </a>
-
-      <a class="link-btn" href="https://tips.jp/s/oH9aYp/d/dac" target="_blank">
-        👑 アラフィフ・オブ・ストリート
-      </a>
-
-      <div class="section-title">講習生の声</div>
+    <section class="section">
+      <h2>VOICE</h2>
 
       <div class="voice">
-        「写真を変えただけでマッチ数が明らかに増えました」
+        「写真を変えただけで、マッチ数が明らかに増えました」
       </div>
 
       <div class="voice">
         「メッセの返し方を変えたら、自然にアポまで繋がりました」
       </div>
-
-      <div class="section-title">SNS</div>
-
-      <a class="link-btn" href="https://x.com/kzdazo55" target="_blank">
-        𝕏 @kzdazo55
-        <span class="sub">恋愛・マチアプ・AI写真について発信中</span>
-      </a>
-
-      <p class="footer">
-        © Mote AI Studio
-      </p>
     </section>
+
+    <section class="section">
+      <h2>SNS</h2>
+
+      <a class="link-card" href="https://x.com/kzdazo55" target="_blank">
+        <div class="icon">𝕏</div>
+        <div>
+          <strong>@kzdazo55</strong>
+          <small>マチアプ・AI写真・恋愛設計を発信中</small>
+        </div>
+      </a>
+    </section>
+
+    <p class="footer">© Mote AI Studio</p>
+
   </main>
 </body>
 </html>
-まずはこれを CodePenのHTML欄に全部貼る だけで表示できます。
