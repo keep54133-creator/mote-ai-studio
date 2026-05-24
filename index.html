@@ -187,16 +187,70 @@
       font-size: 12px;
       color: #777;
     }
+
+    /* アコーディオン */
+
+    .accordion {
+      margin-bottom: 14px;
+    }
+
+    .accordion-btn {
+      width: 100%;
+      border: none;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 24px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      box-shadow: 0 14px 36px rgba(80,60,40,0.08);
+    }
+
+    .accordion-btn .text {
+      text-align: left;
+    }
+
+    .accordion-btn strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .accordion-btn small {
+      color: #666;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 18px;
+      background: rgba(255,255,255,0.55);
+      border-radius: 20px;
+      margin-top: 10px;
+      line-height: 1.9;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .accordion-content p {
+      margin-bottom: 12px;
+    }
+
   </style>
 </head>
 
 <body>
+
   <main class="page">
 
     <section class="hero">
       <div class="badge">MOTE AI STUDIO</div>
 
       <h1>モテは、<br>設計できる。</h1>
+
       <p>
         写真・プロフィール・メッセージを整えて、<br>
         マチアプの第一印象を変える。
@@ -205,6 +259,7 @@
 
     <section class="profile">
       <div class="profile-title">恋愛初心者向けのモテ設計</div>
+
       <div class="profile-text">
         AI写真生成、プロフィール添削、メッセ添削、恋愛コンサルまで。  
         “なんとなく頑張る恋愛”ではなく、女性に伝わる見せ方を作ります。
@@ -217,46 +272,153 @@
     </a>
 
     <section class="section">
+
       <h2>講習メニュー</h2>
 
-      <a class="link-card" href="#">
-        <div class="icon">📷</div>
-        <div>
-          <strong>AI写真生成</strong>
-          <small>マチアプ・インスタ用の自然な写真を設計</small>
-        </div>
-      </a>
+      <!-- AI写真生成 -->
 
-      <a class="link-card" href="#">
-        <div class="icon">📝</div>
-        <div>
-          <strong>プロフィール添削</strong>
-          <small>女性に刺さるプロフィール文へ改善</small>
-        </div>
-      </a>
+      <div class="accordion">
 
-      <a class="link-card" href="#">
-        <div class="icon">💬</div>
-        <div>
-          <strong>メッセ添削</strong>
-          <small>返信が来やすい会話設計に修正</small>
-        </div>
-      </a>
+        <button class="accordion-btn">
+          <div class="icon">📷</div>
 
-      <a class="link-card" href="#">
-        <div class="icon">🧠</div>
-        <div>
-          <strong>恋愛コンサル</strong>
-          <small>マチアプ・デート・会話を個別設計</small>
+          <div class="text">
+            <strong>AI写真生成</strong>
+            <small>マチアプ・インスタ用の自然な写真を設計</small>
+          </div>
+        </button>
+
+        <div class="accordion-content">
+
+          <p>
+            <strong>講習内容</strong><br>
+            ・女性ウケする写真構成<br>
+            ・AI感を消す方法<br>
+            ・マチアプ向け写真設計<br>
+            ・インスタ用エモ写真作成
+          </p>
+
+          <p>
+            <strong>料金</strong><br>
+            60分 ¥9,800
+          </p>
+
+          <p>
+            <strong>こんな人向け</strong><br>
+            ・マッチしない<br>
+            ・写真に自信ない<br>
+            ・AI写真を使いたい
+          </p>
+
         </div>
-      </a>
+
+      </div>
+
+      <!-- プロフィール添削 -->
+
+      <div class="accordion">
+
+        <button class="accordion-btn">
+          <div class="icon">📝</div>
+
+          <div class="text">
+            <strong>プロフィール添削</strong>
+            <small>女性に刺さるプロフィール文へ改善</small>
+          </div>
+        </button>
+
+        <div class="accordion-content">
+
+          <p>
+            <strong>講習内容</strong><br>
+            ・女性視点のプロフィール設計<br>
+            ・NG文章改善<br>
+            ・マッチ率UP構成<br>
+            ・趣味・自己紹介最適化
+          </p>
+
+          <p>
+            <strong>料金</strong><br>
+            40分 ¥6,800
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- メッセ添削 -->
+
+      <div class="accordion">
+
+        <button class="accordion-btn">
+          <div class="icon">💬</div>
+
+          <div class="text">
+            <strong>メッセ添削</strong>
+            <small>返信が来やすい会話設計に修正</small>
+          </div>
+        </button>
+
+        <div class="accordion-content">
+
+          <p>
+            <strong>講習内容</strong><br>
+            ・返信率改善<br>
+            ・会話の広げ方<br>
+            ・アポへ繋げる流れ<br>
+            ・女性が返しやすい聞き方
+          </p>
+
+          <p>
+            <strong>料金</strong><br>
+            30分 ¥4,980
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- 恋愛コンサル -->
+
+      <div class="accordion">
+
+        <button class="accordion-btn">
+          <div class="icon">🧠</div>
+
+          <div class="text">
+            <strong>恋愛コンサル</strong>
+            <small>マチアプ・デート・会話を個別設計</small>
+          </div>
+        </button>
+
+        <div class="accordion-content">
+
+          <p>
+            <strong>講習内容</strong><br>
+            ・恋愛全体設計<br>
+            ・デート改善<br>
+            ・会話・LINE添削<br>
+            ・女性心理理解
+          </p>
+
+          <p>
+            <strong>料金</strong><br>
+            90分 ¥19,800
+          </p>
+
+        </div>
+
+      </div>
+
     </section>
 
     <section class="section">
+
       <h2>TIPS販売所</h2>
 
       <a class="link-card" href="https://tips.jp/s/8XW6XS/d/dac" target="_blank">
         <div class="icon">✨</div>
+
         <div>
           <strong>AI写真でマチアプ&インスタ無双</strong>
           <small>写真設計の基礎を学ぶ</small>
@@ -265,6 +427,7 @@
 
       <a class="link-card" href="https://tips.jp/s/fcQP12/d/dac" target="_blank">
         <div class="icon">⚔️</div>
+
         <div>
           <strong>武装ネオナンパ理論</strong>
           <small>対面恋愛の設計を学ぶ</small>
@@ -273,14 +436,17 @@
 
       <a class="link-card" href="https://tips.jp/s/oH9aYp/d/dac" target="_blank">
         <div class="icon">👑</div>
+
         <div>
           <strong>アラフィフ・オブ・ストリート</strong>
           <small>年齢を武器に変える恋愛戦略</small>
         </div>
       </a>
+
     </section>
 
     <section class="section">
+
       <h2>講習生の声</h2>
 
       <div class="voice">
@@ -290,22 +456,50 @@
       <div class="voice">
         「メッセの返し方を変えたら、自然にアポまで繋がりました」
       </div>
+
     </section>
 
     <section class="section">
+
       <h2>SNS</h2>
 
       <a class="link-card" href="https://x.com/kzdazo55" target="_blank">
         <div class="icon">𝕏</div>
+
         <div>
           <strong>@kzdazo55</strong>
           <small>マチアプ・AI写真・恋愛設計を発信中</small>
         </div>
       </a>
+
     </section>
 
     <p class="footer">© Mote AI Studio</p>
 
   </main>
+
+  <script>
+
+    const accordions = document.querySelectorAll(".accordion");
+
+    accordions.forEach((accordion) => {
+
+      const btn = accordion.querySelector(".accordion-btn");
+      const content = accordion.querySelector(".accordion-content");
+
+      btn.addEventListener("click", () => {
+
+        if(content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+
+      });
+
+    });
+
+  </script>
+
 </body>
 </html>
