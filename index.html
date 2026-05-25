@@ -29,22 +29,24 @@
     }
 
     .hero {
-      position: relative;
-      border-radius: 32px;
-      overflow: hidden;
-      min-height: 420px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      background-image:
-  linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.72)),
-  url("https://i.imgur.com/zCgQYaM.png");
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  min-height: 420px;
+  padding: 120px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-    }
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.72)),
+    url("https://i.imgur.com/zCgQYaM.png");
+
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+}
 
     .badge {
       position: absolute;
@@ -60,18 +62,19 @@
     }
 
     .hero h1 {
-      color: white;
-      font-size: 34px;
-      line-height: 1.15;
-      letter-spacing: 0.02em;
-      margin-bottom: 10px;
-    }
+  color: #dcc3a3;
+  font-size: 62px;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  margin-bottom: 22px;
+  font-weight: 700;
+}
 
     .hero p {
-      color: rgba(255,255,255,0.88);
-      font-size: 14px;
-      line-height: 1.8;
-    }
+  color: rgba(245,230,210,0.92);
+  font-size: 14px;
+  line-height: 1.8;
+}
 
     .profile {
       margin-top: 18px;
@@ -250,7 +253,11 @@
     <section class="hero">
       <div class="badge">MOTE AI STUDIO</div>
 
-      <h1>モテは、<br>設計できる。</h1>
+      <h1>
+  モテは、<br>
+  設計<br>
+  できる。
+</h1>
 
       <p>
         写真・プロフィール・メッセージを整えて、<br>
