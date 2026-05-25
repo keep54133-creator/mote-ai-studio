@@ -1,522 +1,717 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mote AI Studio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title>Mote AI Studio</title>
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(120, 120, 255, 0.22), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(255, 180, 140, 0.18), transparent 35%),
-        linear-gradient(180deg, #f7f3ee 0%, #eee7df 45%, #e9e1d8 100%);
-      color: #1f1f1f;
-      min-height: 100vh;
-    }
+<style>
 
-    .page {
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 24px 18px 48px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    .hero {
-  position: relative;
-  border-radius: 32px;
-  overflow: hidden;
-  min-height: 420px;
-  padding: 170px 22px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;
+
+  background:
+    radial-gradient(circle at top left, rgba(120,120,255,0.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(255,180,140,0.12), transparent 35%),
+    linear-gradient(180deg,#f7f3ee 0%,#eee7df 45%,#e9e1d8 100%);
+
+  color:#1f1f1f;
+  min-height:100vh;
+}
+
+.page{
+  max-width:430px;
+  margin:0 auto;
+  padding:24px 18px 48px;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  border-radius:34px;
+
+  min-height:520px;
+
+  padding:170px 22px 28px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:flex-start;
 
   background-image:
-    linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.72)),
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.10),
+      rgba(0,0,0,0.74)
+    ),
     url("https://i.imgur.com/zCgQYaM.png");
 
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+  background-size:cover;
+  background-position:center;
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.18);
 }
 
-    .badge {
-      position: absolute;
-      top: 18px;
-      left: 18px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      backdrop-filter: blur(14px);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
+.badge{
+  position:absolute;
+  top:18px;
+  left:18px;
 
-    .hero h1 {
-  color: #dcc3a3;
-  font-size: 62px;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  margin-bottom: 22px;
-  font-weight: 700;
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  background:rgba(245,230,210,0.92);
+
+  color:#222;
+
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.12em;
+
+  backdrop-filter:blur(10px);
 }
 
-    .hero p {
-  color: rgba(245,230,210,0.92);
-  font-size: 14px;
-  line-height: 1.8;
+.hero h1{
+  color:#e4c9a8;
+
+  font-size:72px;
+  line-height:0.98;
+
+  font-weight:800;
+
+  letter-spacing:-0.03em;
+
+  margin-bottom:26px;
+
+  text-shadow:
+    0 4px 18px rgba(0,0,0,0.38);
 }
 
-    .profile {
-      margin-top: 18px;
-      background: rgba(255,255,255,0.66);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.75);
-      border-radius: 26px;
-      padding: 18px;
-      box-shadow: 0 18px 45px rgba(80,60,40,0.08);
-    }
+.hero p{
+  color:rgba(255,245,230,0.95);
 
-    .profile-title {
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
+  font-size:15px;
 
-    .profile-text {
-      font-size: 13px;
-      line-height: 1.8;
-      color: #555;
-    }
+  line-height:1.9;
 
-    .main-btn {
-  display: block;
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 22px;
-  text-decoration: none;
-  color: white;
-  text-align: center;
-  font-weight: 800;
-  font-size: 16px;
-
-  background: rgba(20,20,20,0.92);
-  backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,255,255,0.18);
-
-  box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+  text-shadow:
+    0 2px 10px rgba(0,0,0,0.4);
 }
 
-    .main-btn span {
-      display: block;
-      margin-top: 5px;
-      font-size: 12px;
-      font-weight: 500;
-      opacity: 0.7;
-    }
+/* PROFILE */
 
-    .section {
-      margin-top: 30px;
-    }
+.profile{
+  margin-top:20px;
 
-    .section h2 {
-      font-size: 15px;
-      margin-bottom: 14px;
-      letter-spacing: 0.06em;
-      color: #333;
-    }
+  background:rgba(255,255,255,0.72);
 
-    .link-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: #1f1f1f;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 24px;
-      padding: 15px;
-      margin-bottom: 12px;
-      box-shadow: 0 14px 36px rgba(80,60,40,0.08);
-      transition: 0.2s ease;
-    }
+  backdrop-filter:blur(18px);
 
-    .link-card:hover {
-      transform: translateY(-2px);
-      background: white;
-    }
+  border:
+    1px solid rgba(255,255,255,0.92);
 
-    .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: #f1ebe4;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
+  border-radius:28px;
 
-    .link-card strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
+  padding:22px;
 
-    .link-card small {
-      color: #666;
-      line-height: 1.5;
-      font-size: 12px;
-    }
+  box-shadow:
+    0 18px 45px rgba(80,60,40,0.08);
+}
 
-    .voice {
-      background: rgba(255,255,255,0.64);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 22px;
-      padding: 15px;
-      margin-bottom: 10px;
-      font-size: 13px;
-      line-height: 1.8;
-      color: #444;
-    }
+.profile-title{
+  font-size:16px;
+  font-weight:800;
 
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 12px;
-      color: #777;
-    }
+  margin-bottom:10px;
+}
 
-    /* アコーディオン */
+.profile-text{
+  font-size:14px;
 
-    .accordion {
-      margin-bottom: 14px;
-    }
+  line-height:1.9;
 
-    .accordion-btn {
-      width: 100%;
-      border: none;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 24px;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      cursor: pointer;
-      box-shadow: 0 14px 36px rgba(80,60,40,0.08);
-    }
+  color:#555;
+}
 
-    .accordion-btn .text {
-      text-align: left;
-    }
+/* BUTTON */
 
-    .accordion-btn strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
+.main-btn{
+  display:block;
 
-    .accordion-btn small {
-      color: #666;
-      font-size: 12px;
-      line-height: 1.5;
-    }
+  margin-top:20px;
 
-    .accordion-content {
-      display: none;
-      padding: 18px;
-      background: rgba(255,255,255,0.55);
-      border-radius: 20px;
-      margin-top: 10px;
-      line-height: 1.9;
-      font-size: 13px;
-      color: #444;
-    }
+  padding:22px;
 
-    .accordion-content p {
-      margin-bottom: 12px;
-    }
+  border-radius:26px;
 
-  </style>
+  text-decoration:none;
+
+  color:white;
+
+  text-align:center;
+
+  font-weight:800;
+
+  font-size:18px;
+
+  background:
+    rgba(20,20,20,0.88);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  border:
+    1px solid rgba(255,255,255,0.28);
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.main-btn span{
+  display:block;
+
+  margin-top:7px;
+
+  font-size:12px;
+
+  opacity:0.74;
+
+  font-weight:500;
+}
+
+/* SECTION */
+
+.section{
+  margin-top:34px;
+}
+
+.section h2{
+  font-size:16px;
+
+  margin-bottom:15px;
+
+  letter-spacing:0.06em;
+
+  color:#333;
+}
+
+/* ACCORDION */
+
+.accordion{
+  margin-bottom:14px;
+}
+
+.accordion-btn{
+  width:100%;
+
+  border:none;
+
+  background:rgba(255,255,255,0.76);
+
+  border:
+    1px solid rgba(255,255,255,0.95);
+
+  border-radius:26px;
+
+  padding:16px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 14px 36px rgba(80,60,40,0.08);
+}
+
+.accordion-btn .text{
+  text-align:left;
+}
+
+.accordion-btn strong{
+  display:block;
+
+  font-size:16px;
+
+  margin-bottom:4px;
+}
+
+.accordion-btn small{
+  color:#666;
+
+  font-size:12px;
+
+  line-height:1.5;
+}
+
+.accordion-content{
+  display:none;
+
+  padding:18px;
+
+  margin-top:10px;
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,0.56);
+
+  line-height:1.9;
+
+  font-size:13px;
+
+  color:#444;
+}
+
+.accordion-content p{
+  margin-bottom:12px;
+}
+
+/* ICON */
+
+.icon{
+  width:50px;
+  height:50px;
+
+  border-radius:18px;
+
+  display:grid;
+  place-items:center;
+
+  background:#f2ebe5;
+
+  font-size:24px;
+
+  flex-shrink:0;
+}
+
+/* LINK CARD */
+
+.link-card{
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  text-decoration:none;
+
+  color:#1f1f1f;
+
+  background:
+    rgba(255,255,255,0.76);
+
+  border:
+    1px solid rgba(255,255,255,0.95);
+
+  border-radius:26px;
+
+  padding:16px;
+
+  margin-bottom:12px;
+
+  box-shadow:
+    0 14px 36px rgba(80,60,40,0.08);
+}
+
+.link-card strong{
+  display:block;
+
+  font-size:15px;
+
+  margin-bottom:4px;
+}
+
+.link-card small{
+  color:#666;
+
+  font-size:12px;
+}
+
+/* VOICE */
+
+.voice{
+  background:
+    rgba(255,255,255,0.72);
+
+  border:
+    1px solid rgba(255,255,255,0.95);
+
+  border-radius:26px;
+
+  padding:14px;
+
+  margin-bottom:12px;
+
+  box-shadow:
+    0 14px 36px rgba(80,60,40,0.08);
+}
+
+.voice img{
+  width:100%;
+  border-radius:18px;
+}
+
+/* FOOTER */
+
+.footer{
+  text-align:center;
+
+  margin-top:34px;
+
+  font-size:12px;
+
+  color:#888;
+}
+
+</style>
 </head>
 
 <body>
 
-  <main class="page">
+<main class="page">
 
-    <section class="hero">
-      <div class="badge">MOTE AI STUDIO</div>
+<section class="hero">
 
-      <h1>
-  モテは、<br>
-  設計<br>
-  できる。
+<div class="badge">
+MOTE AI STUDIO
+</div>
+
+<h1>
+モテは、<br>
+設計<br>
+できる。
 </h1>
 
-      <p>
-        写真・プロフィール・メッセージを整えて、<br>
-        マチアプの第一印象を変える。
-      </p>
-    </section>
+<p>
+写真・プロフィール・メッセージを整えて、<br>
+マチアプの第一印象を変える。
+</p>
 
-    <section class="profile">
-      <div class="profile-title">恋愛初心者向けのモテ設計</div>
+</section>
 
-      <div class="profile-text">
-        AI写真生成、プロフィール添削、メッセ添削、恋愛コンサルまで。  
-        “なんとなく頑張る恋愛”ではなく、女性に伝わる見せ方を作ります。
-      </div>
-    </section>
+<section class="profile">
 
-    <a class="main-btn" href="https://forms.gle/FYgztqKATrLruvYZ7" target="_blank">
-      無料相談する
-      <span>写真・プロフィール・メッセ相談OK</span>
-    </a>
+<div class="profile-title">
+恋愛初心者向けのモテ設計
+</div>
 
-    <section class="section">
+<div class="profile-text">
+AI写真生成、プロフィール添削、メッセ添削、恋愛コンサルまで。
+“なんとなく頑張る恋愛”ではなく、
+女性に伝わる見せ方を作ります。
+</div>
 
-      <h2>講習メニュー</h2>
+</section>
 
-      <!-- AI写真生成 -->
+<a class="main-btn"
+href="https://forms.gle/FYgztqKATrLruvYZ7"
+target="_blank">
 
-      <div class="accordion">
+無料相談する
 
-        <button class="accordion-btn">
-          <div class="icon">📷</div>
+<span>
+写真・プロフィール・メッセ相談OK
+</span>
 
-          <div class="text">
-            <strong>AI写真生成</strong>
-            <small>マチアプ・インスタ用の自然な写真を設計</small>
-          </div>
-        </button>
+</a>
 
-        <div class="accordion-content">
+<section class="section">
 
-          <p>
-            <strong>講習内容</strong><br>
-            ・女性ウケする写真構成<br>
-            ・AI感を消す方法<br>
-            ・マチアプ向け写真設計<br>
-            ・インスタ用エモ写真作成
-          </p>
+<h2>講習メニュー</h2>
 
-          <p>
-            <strong>料金</strong><br>
-            60分 ¥9,800
-          </p>
+<!-- AI写真 -->
 
-          <p>
-            <strong>こんな人向け</strong><br>
-            ・マッチしない<br>
-            ・写真に自信ない<br>
-            ・AI写真を使いたい
-          </p>
+<div class="accordion">
 
-        </div>
+<button class="accordion-btn">
 
-      </div>
+<div class="icon">📷</div>
 
-      <!-- プロフィール添削 -->
+<div class="text">
 
-      <div class="accordion">
+<strong>AI写真生成</strong>
 
-        <button class="accordion-btn">
-          <div class="icon">📝</div>
+<small>
+マチアプ・インスタ用の自然な写真を設計
+</small>
 
-          <div class="text">
-            <strong>プロフィール添削</strong>
-            <small>女性に刺さるプロフィール文へ改善</small>
-          </div>
-        </button>
+</div>
 
-        <div class="accordion-content">
+</button>
 
-          <p>
-            <strong>講習内容</strong><br>
-            ・女性視点のプロフィール設計<br>
-            ・NG文章改善<br>
-            ・マッチ率UP構成<br>
-            ・趣味・自己紹介最適化
-          </p>
+<div class="accordion-content">
 
-          <p>
-            <strong>料金</strong><br>
-            40分 ¥6,800
-          </p>
+<p>
+<strong>講習内容</strong><br>
+・女性ウケする写真構成<br>
+・AI感を消す方法<br>
+・マチアプ向け写真設計<br>
+・インスタ用エモ写真
+</p>
 
-        </div>
+<p>
+<strong>料金</strong><br>
+60分 ¥9,800
+</p>
 
-      </div>
+</div>
 
-      <!-- メッセ添削 -->
+</div>
 
-      <div class="accordion">
+<!-- プロフ -->
 
-        <button class="accordion-btn">
-          <div class="icon">💬</div>
+<div class="accordion">
 
-          <div class="text">
-            <strong>メッセ添削</strong>
-            <small>返信が来やすい会話設計に修正</small>
-          </div>
-        </button>
+<button class="accordion-btn">
 
-        <div class="accordion-content">
+<div class="icon">📝</div>
 
-          <p>
-            <strong>講習内容</strong><br>
-            ・返信率改善<br>
-            ・会話の広げ方<br>
-            ・アポへ繋げる流れ<br>
-            ・女性が返しやすい聞き方
-          </p>
+<div class="text">
 
-          <p>
-            <strong>料金</strong><br>
-            30分 ¥4,980
-          </p>
+<strong>プロフィール添削</strong>
 
-        </div>
+<small>
+女性に刺さるプロフィール文へ改善
+</small>
 
-      </div>
+</div>
 
-      <!-- 恋愛コンサル -->
+</button>
 
-      <div class="accordion">
+<div class="accordion-content">
 
-        <button class="accordion-btn">
-          <div class="icon">🧠</div>
+<p>
+<strong>講習内容</strong><br>
+・女性視点プロフィール設計<br>
+・NG改善<br>
+・マッチ率UP構成
+</p>
 
-          <div class="text">
-            <strong>恋愛コンサル</strong>
-            <small>マチアプ・デート・会話を個別設計</small>
-          </div>
-        </button>
+<p>
+<strong>料金</strong><br>
+40分 ¥6,800
+</p>
 
-        <div class="accordion-content">
+</div>
 
-          <p>
-            <strong>講習内容</strong><br>
-            ・恋愛全体設計<br>
-            ・デート改善<br>
-            ・会話・LINE添削<br>
-            ・女性心理理解
-          </p>
+</div>
 
-          <p>
-            <strong>料金</strong><br>
-            90分 ¥19,800
-          </p>
+<!-- メッセ -->
 
-        </div>
+<div class="accordion">
 
-      </div>
+<button class="accordion-btn">
 
-    </section>
+<div class="icon">💬</div>
 
-    <section class="section">
+<div class="text">
 
-      <h2>TIPS販売所</h2>
+<strong>メッセ添削</strong>
 
-      <a class="link-card" href="https://tips.jp/s/8XW6XS/d/dac" target="_blank">
-        <div class="icon">✨</div>
+<small>
+返信が来やすい会話設計に修正
+</small>
 
-        <div>
-          <strong>AI写真でマチアプ&インスタ無双</strong>
-          <small>写真設計の基礎を学ぶ</small>
-        </div>
-      </a>
+</div>
 
-      <a class="link-card" href="https://tips.jp/s/fcQP12/d/dac" target="_blank">
-        <div class="icon">⚔️</div>
+</button>
 
-        <div>
-          <strong>武装ネオナンパ理論</strong>
-          <small>対面恋愛の設計を学ぶ</small>
-        </div>
-      </a>
+<div class="accordion-content">
 
-      <a class="link-card" href="https://tips.jp/s/oH9aYp/d/dac" target="_blank">
-        <div class="icon">👑</div>
+<p>
+<strong>講習内容</strong><br>
+・返信率改善<br>
+・会話の広げ方<br>
+・アポ導線
+</p>
 
-        <div>
-          <strong>アラフィフ・オブ・ストリート</strong>
-          <small>年齢を武器に変える恋愛戦略</small>
-        </div>
-      </a>
+<p>
+<strong>料金</strong><br>
+30分 ¥4,980
+</p>
 
-    </section>
+</div>
 
-    <section class="section">
+</div>
 
-      <h2>講習生の声</h2>
-　　　　<div class="voice">
-  <img src="https://i.imgur.com/ElGij9G.jpeg"
-  style="width:100%; border-radius:18px;">
-　　　</div>
+<!-- コンサル -->
 
-      <div class="voice">
-        「写真を変えただけで、マッチ数が明らかに増えました」
-      </div>
+<div class="accordion">
 
-      <div class="voice">
-        「メッセの返し方を変えたら、自然にアポまで繋がりました」
-      </div>
+<button class="accordion-btn">
 
-    </section>
+<div class="icon">🧠</div>
 
-    <section class="section">
+<div class="text">
 
-      <h2>SNS</h2>
+<strong>恋愛コンサル</strong>
 
-      <a class="link-card" href="https://x.com/kzdazo55" target="_blank">
-        <div class="icon">𝕏</div>
+<small>
+マチアプ・デート・会話を個別設計
+</small>
 
-        <div>
-          <strong>@kzdazo55</strong>
-          <small>マチアプ・AI写真・恋愛設計を発信中</small>
-        </div>
-      </a>
+</div>
 
-    </section>
+</button>
 
-    <p class="footer">© Mote AI Studio</p>
+<div class="accordion-content">
 
-  </main>
+<p>
+<strong>講習内容</strong><br>
+・恋愛全体設計<br>
+・デート改善<br>
+・LINE添削
+</p>
 
-  <script>
+<p>
+<strong>料金</strong><br>
+90分 ¥19,800
+</p>
 
-    const accordions = document.querySelectorAll(".accordion");
+</div>
 
-    accordions.forEach((accordion) => {
+</div>
 
-      const btn = accordion.querySelector(".accordion-btn");
-      const content = accordion.querySelector(".accordion-content");
+</section>
 
-      btn.addEventListener("click", () => {
+<section class="section">
 
-        if(content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
+<h2>TIPS販売所</h2>
 
-      });
+<a class="link-card"
+href="https://tips.jp/s/8XW6XS/d/dac"
+target="_blank">
 
-    });
+<div class="icon">✨</div>
 
-  </script>
+<div>
+
+<strong>
+AI写真でマチアプ&インスタ無双
+</strong>
+
+<small>
+写真設計の基礎を学ぶ
+</small>
+
+</div>
+
+</a>
+
+<a class="link-card"
+href="https://tips.jp/s/fcQP12/d/dac"
+target="_blank">
+
+<div class="icon">⚔️</div>
+
+<div>
+
+<strong>
+武装ネオナンパ理論
+</strong>
+
+<small>
+対面恋愛の設計を学ぶ
+</small>
+
+</div>
+
+</a>
+
+</section>
+
+<section class="section">
+
+<h2>講習生の声</h2>
+
+<div class="voice">
+
+<img src="https://i.imgur.com/ElGij9G.jpeg">
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>SNS</h2>
+
+<a class="link-card"
+href="https://x.com/kzdazo55"
+target="_blank">
+
+<div class="icon">𝕏</div>
+
+<div>
+
+<strong>@kzdazo55</strong>
+
+<small>
+マチアプ・AI写真・恋愛設計を発信中
+</small>
+
+</div>
+
+</a>
+
+</section>
+
+<p class="footer">
+© Mote AI Studio
+</p>
+
+</main>
+
+<script>
+
+const accordions =
+document.querySelectorAll(".accordion");
+
+accordions.forEach((accordion)=>{
+
+const btn =
+accordion.querySelector(".accordion-btn");
+
+const content =
+accordion.querySelector(".accordion-content");
+
+btn.addEventListener("click",()=>{
+
+if(content.style.display==="block"){
+
+content.style.display="none";
+
+}else{
+
+content.style.display="block";
+
+}
+
+});
+
+});
+
+</script>
 
 </body>
 </html>
