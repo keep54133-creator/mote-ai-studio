@@ -365,7 +365,53 @@ body{
 
   color:#888;
 }
+/* 自己紹介 */
 
+.intro-card{
+  margin-top:22px;
+
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+
+  background:rgba(255,255,255,0.72);
+
+  border:1px solid rgba(255,255,255,0.92);
+
+  border-radius:26px;
+
+  padding:18px;
+
+  box-shadow:
+    0 14px 36px rgba(80,60,40,0.08);
+}
+
+.intro-icon{
+  width:68px;
+  height:68px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  flex-shrink:0;
+
+  border:2px solid rgba(255,255,255,0.9);
+}
+
+.intro-name{
+  font-size:15px;
+  font-weight:800;
+
+  margin-bottom:8px;
+}
+
+.intro-desc{
+  font-size:13px;
+  line-height:1.8;
+
+  color:#555;
+}
 </style>
 </head>
 
@@ -417,6 +463,30 @@ target="_blank">
 </span>
 
 </a>
+<section class="intro-card">
+
+  <img
+    class="intro-icon"
+    src="https://i.imgur.com/T6i0umn.jpeg"
+  >
+
+  <div class="intro-text">
+
+    <div class="intro-name">
+      カズ｜Mote AI Studio
+    </div>
+
+    <div class="intro-desc">
+      マチアプ・AI写真・メッセ添削を中心に、
+      “女性に伝わる見せ方”を設計。
+
+      AI写真生成、プロフィール改善、
+      会話設計までサポートしています。
+    </div>
+
+  </div>
+
+</section>
 
 <section class="section">
 
