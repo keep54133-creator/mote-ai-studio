@@ -419,6 +419,31 @@ body{
   border-radius: 16px;
   flex-shrink: 0;
 }
+.voice-scroll{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:10px;
+  scroll-snap-type:x mandatory;
+}
+
+.voice-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.voice-card{
+  min-width:85%;
+  flex-shrink:0;
+  scroll-snap-align:start;
+}
+
+.voice-card img{
+  width:100%;
+  border-radius:20px;
+  display:block;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
 </style>
 </head>
 
